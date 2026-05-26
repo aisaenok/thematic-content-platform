@@ -16,6 +16,14 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@thematic-content-platform/source"]
+    "customConditions": ["@thematic-content-platform/source"],
+    "paths": {
+      "@thematic-content-platform/content-domain": [
+        "./packages/content-domain/src/index.ts"
+      ],
+      "@thematic-content-platform/content-source": [
+        "./packages/content-source/src/index.ts"
+      ]
+    }
   }
 }

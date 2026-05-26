@@ -8,6 +8,9 @@
     },
     {
       "path": "./packages/content-domain"
+    },
+    {
+      "path": "./packages/content-source"
     }
   ]
 }
