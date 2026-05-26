@@ -15,8 +15,6 @@ type ArticleDetailsPageProps = {
   }>
 }
 
-export const dynamicParams = false
-
 export function generateStaticParams() {
   return getArticles().map((article) => ({
     slug: article.slug,
