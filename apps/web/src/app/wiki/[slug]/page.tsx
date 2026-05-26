@@ -60,7 +60,7 @@ export default async function ArticleDetailsPage({
   const bodyParagraphs = article.body.split('\n\n')
 
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <nav className={styles.breadcrumbs} aria-label="Breadcrumbs">
         <Link href="/">Home</Link>
         <span aria-hidden="true">/</span>
@@ -100,6 +100,6 @@ export default async function ArticleDetailsPage({
 
         <RelatedContentBlock relations={article.related} />
       </article>
-    </main>
+    </div>
   )
 }

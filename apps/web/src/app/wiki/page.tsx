@@ -14,7 +14,7 @@ export default function WikiPage() {
   const articles = getArticles()
 
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>Demo domain</p>
 
@@ -50,6 +50,6 @@ export default function WikiPage() {
           </article>
         ))}
       </section>
-    </main>
+    </div>
   )
 }

@@ -4,7 +4,7 @@ import styles from './page.module.css'
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>Portfolio-grade prototype</p>
 
@@ -19,6 +19,6 @@ export default function HomePage() {
           Open wiki articles
         </Link>
       </section>
-    </main>
+    </div>
   )
 }

@@ -1,0 +1,25 @@
+.footer {
+  border-top: 1px solid #e5e5e5;
+  background: #fafafa;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+  gap: 16px;
+}
+
+.text {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    flex-direction: column;
+  }
+}
