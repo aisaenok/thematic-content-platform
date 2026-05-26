@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
   getArticleBySlug,
@@ -8,6 +7,7 @@ import {
 import { RelatedContentBlock } from '../../../widgets/related-content-block'
 
 import styles from './page.module.css'
+import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 
 type ArticleDetailsPageProps = {
   params: Promise<{
@@ -61,13 +61,21 @@ export default async function ArticleDetailsPage({
 
   return (
     <div className={styles.page}>
-      <nav className={styles.breadcrumbs} aria-label="Breadcrumbs">
-        <Link href="/">Home</Link>
-        <span aria-hidden="true">/</span>
-        <Link href="/wiki">Wiki</Link>
-        <span aria-hidden="true">/</span>
-        <span>{article.title}</span>
-      </nav>
+      <Breadcrumbs
+        items={[
+          {
+            label: 'Home',
+            href: '/',
+          },
+          {
+            label: 'Wiki',
+            href: '/wiki',
+          },
+          {
+            label: article.title,
+          },
+        ]}
+      />
 
       <article className={styles.article}>
         <header className={styles.header}>
