@@ -1,0 +1,1 @@
+export { RelatedContentBlock } from './related-content-block'

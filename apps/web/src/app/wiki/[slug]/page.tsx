@@ -5,6 +5,7 @@ import {
   getArticleBySlug,
   getArticles,
 } from '@thematic-content-platform/content-source'
+import { RelatedContentBlock } from '../../../widgets/related-content-block'
 
 import styles from './page.module.css'
 
@@ -90,6 +91,8 @@ export default async function ArticleDetailsPage({
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        <RelatedContentBlock relations={article.related} />
       </article>
     </main>
   )

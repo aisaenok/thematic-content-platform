@@ -48,6 +48,9 @@
   "references": [
     {
       "path": "../../packages/content-source"
+    },
+    {
+      "path": "../../packages/content-domain"
     }
   ]
 }
