@@ -4,7 +4,7 @@ import type {
   ContentId,
   Slug,
 } from '@thematic-content-platform/content-domain'
-import { mockArticles } from './mock/articles.js'
+import { mockArticles } from './mock/articles'
 
 const toArticleSummary = ({
   id,

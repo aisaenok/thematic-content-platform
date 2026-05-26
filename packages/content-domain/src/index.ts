@@ -4,9 +4,9 @@ export type {
   DateISOString,
   ContentStatus,
   ContentType,
-} from './shared.js'
+} from './shared'
 
-export type { Category } from './category.js'
-export type { Tag } from './tag.js'
-export type { ContentRelation } from './content-relation.js'
-export type { Article, ArticleSummary } from './article.js'
+export type { Category } from './category'
+export type { Tag } from './tag'
+export type { ContentRelation } from './content-relation'
+export type { Article, ArticleSummary } from './article'

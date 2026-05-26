@@ -1,6 +1,6 @@
 import type { Article } from '@thematic-content-platform/content-domain'
-import { alienUniverseCategory, xenomorphsCategory } from './categories.js'
-import { tags } from './tags.js'
+import { alienUniverseCategory, xenomorphsCategory } from './categories'
+import { tags } from './tags'
 
 export const mockArticles: Article[] = [
   {

@@ -1,4 +1,4 @@
-import type { ContentId, ContentType, Slug } from './shared.js'
+import type { ContentId, ContentType, Slug } from './shared'
 
 export type ContentRelation = {
   id: ContentId

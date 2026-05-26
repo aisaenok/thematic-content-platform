@@ -8,6 +8,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@thematic-content-platform/content-source": "workspace:*",
     "@types/node": "25.9.1"
   }
 }

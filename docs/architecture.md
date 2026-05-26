@@ -120,6 +120,44 @@ FileSystemContentSource
 
 Выносить в `packages/ui` стоит только то, что реально переиспользуется между несколькими частями приложения.
 
+## Модель использования внутренних пакетов
+
+На текущем этапе внутренние `packages/*` используются как source code dependencies для Next.js-приложения.
+
+Это означает:
+
+```text
+apps/web
+  → imports TypeScript source from packages/*
+  → Next.js/Turbopack transpiles these packages during app build
+```
+
+Пакеты `content-domain` и `content-source` не рассматриваются как standalone Node ESM-пакеты, которые сначала собираются в `dist`, а затем импортируются приложением как готовые npm-пакеты.
+
+Поэтому для внутренних пакетов используется модель:
+
+```text
+TypeScript moduleResolution: "bundler"
+extensionless relative imports
+Next.js transpilePackages
+```
+
+Пример корректного относительного импорта:
+
+```ts
+import { mockArticles } from './mock/articles'
+```
+
+Не используем Node ESM-style импорт с `.js`-расширением:
+
+```ts
+import { mockArticles } from './mock/articles.js'
+```
+
+Причина: Next.js читает workspace-пакеты как TypeScript-исходники. Если внутри исходного `.ts`-файла указан путь `./articles.js`, Turbopack пытается найти физический файл `articles.js` рядом с `articles.ts`, что приводит к ошибке сборки.
+
+Если в будущем какой-то пакет потребуется публиковать или использовать как standalone Node ESM package, для него нужно будет отдельно пересмотреть `tsconfig`, формат сборки, exports и правила импортов.
+
 ## Первый вертикальный срез
 
 Первый законченный сценарий:

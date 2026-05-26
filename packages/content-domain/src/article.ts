@@ -1,7 +1,7 @@
-import type { Category } from './category.js'
-import type { ContentRelation } from './content-relation.js'
-import type { ContentId, ContentStatus, DateISOString, Slug } from './shared.js'
-import type { Tag } from './tag.js'
+import type { Category } from './category'
+import type { ContentRelation } from './content-relation'
+import type { ContentId, ContentStatus, DateISOString, Slug } from './shared'
+import type { Tag } from './tag'
 
 export type Article = {
   id: ContentId

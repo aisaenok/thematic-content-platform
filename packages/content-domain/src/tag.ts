@@ -1,4 +1,4 @@
-import type { ContentId, Slug } from './shared.js'
+import type { ContentId, Slug } from './shared'
 
 export type Tag = {
   id: ContentId

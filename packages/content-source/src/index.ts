@@ -3,6 +3,6 @@ export {
   getArticleById,
   getArticleBySlug,
   getRelatedArticles,
-} from './articles.js'
+} from './articles'
 
-export { mockArticles } from './mock/articles.js'
+export { mockArticles } from './mock/articles'
