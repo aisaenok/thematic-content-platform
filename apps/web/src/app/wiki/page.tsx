@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { getArticles } from '@thematic-content-platform/content-source'
 
 import styles from './page.module.css'
+import { ArticleCard } from '@/entities/article'
 
 export const metadata: Metadata = {
   title: 'Wiki | Thematic Content Platform',
@@ -28,26 +28,7 @@ export default function WikiPage() {
 
       <section className={styles.grid} aria-label="Wiki articles">
         {articles.map((article) => (
-          <article className={styles.card} key={article.id}>
-            <div className={styles.cardMeta}>
-              <span>{article.category.title}</span>
-              <span>{new Date(article.publishedAt).toLocaleDateString('ru-RU')}</span>
-            </div>
-
-            <h2 className={styles.cardTitle}>
-              <Link href={`/wiki/${article.slug}`}>{article.title}</Link>
-            </h2>
-
-            <p className={styles.cardDescription}>{article.description}</p>
-
-            <ul className={styles.tags} aria-label="Tags">
-              {article.tags.map((tag) => (
-                <li className={styles.tag} key={tag.id}>
-                  {tag.title}
-                </li>
-              ))}
-            </ul>
-          </article>
+          <ArticleCard article={article} key={article.id} />
         ))}
       </section>
     </div>
