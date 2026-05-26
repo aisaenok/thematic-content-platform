@@ -1,0 +1,1 @@
+export { getContentRelationHref, routes } from './content-routes'

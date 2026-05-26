@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import styles from './page.module.css'
+import { routes } from '@/shared/routing'
 
 export default function HomePage() {
   return (
@@ -15,7 +16,7 @@ export default function HomePage() {
           Первый demo domain построен вокруг вселенной Alien.
         </p>
 
-        <Link className={styles.link} href="/wiki">
+        <Link className={styles.link} href={routes.wiki()}>
           Open wiki articles
         </Link>
       </section>

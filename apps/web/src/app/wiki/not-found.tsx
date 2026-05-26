@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Breadcrumbs } from '../../shared/ui/breadcrumbs'
 import styles from './not-found.module.css'
+import { routes } from '@/shared/routing'
 
 export default function ArticleNotFoundPage() {
   return (
@@ -10,11 +11,11 @@ export default function ArticleNotFoundPage() {
         items={[
           {
             label: 'Home',
-            href: '/',
+            href: routes.home(),
           },
           {
             label: 'Wiki',
-            href: '/wiki',
+            href: routes.wiki(),
           },
           {
             label: 'Article not found',
@@ -32,7 +33,7 @@ export default function ArticleNotFoundPage() {
           или материал еще не добавлен в демо-домен.
         </p>
 
-        <Link className={styles.link} href="/wiki">
+        <Link className={styles.link} href={routes.wiki()}>
           Back to wiki articles
         </Link>
       </section>

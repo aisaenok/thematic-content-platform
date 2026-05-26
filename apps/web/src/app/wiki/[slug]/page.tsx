@@ -8,6 +8,7 @@ import { RelatedContentBlock } from '../../../widgets/related-content-block'
 
 import styles from './page.module.css'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
+import { routes } from '@/shared/routing'
 
 type ArticleDetailsPageProps = {
   params: Promise<{
@@ -63,11 +64,11 @@ export default async function ArticleDetailsPage({
         items={[
           {
             label: 'Home',
-            href: '/',
+            href: routes.home(),
           },
           {
             label: 'Wiki',
-            href: '/wiki',
+            href: routes.wiki(),
           },
           {
             label: article.title,

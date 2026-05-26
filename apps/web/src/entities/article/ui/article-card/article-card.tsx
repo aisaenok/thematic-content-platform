@@ -2,6 +2,7 @@ import type { ArticleSummary } from '@thematic-content-platform/content-domain'
 import Link from 'next/link'
 
 import styles from './article-card.module.css'
+import { routes } from '@/shared/routing'
 
 type ArticleCardProps = {
   article: ArticleSummary
@@ -19,7 +20,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
       </div>
 
       <h2 className={styles.title}>
-        <Link href={`/wiki/${article.slug}`}>{article.title}</Link>
+        <Link href={routes.wikiArticle(article.slug)}>{article.title}</Link>
       </h2>
 
       <p className={styles.description}>{article.description}</p>

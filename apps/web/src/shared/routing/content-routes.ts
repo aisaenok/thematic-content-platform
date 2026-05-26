@@ -1,28 +1,37 @@
-import type { ContentRelation, ContentType } from '@thematic-content-platform/content-domain'
+import type { ContentRelation, ContentType, Slug } from '@thematic-content-platform/content-domain'
 
 const assertNever = (value: never): never => {
   throw new Error(`Unhandled content type: ${value}`)
 }
 
-const getContentTypeRoutePrefix = (contentType: ContentType): string | undefined => {
+export const routes = {
+  home: () => '/',
+  wiki: () => '/wiki',
+  wikiArticle: (slug: Slug) => `/wiki/${slug}`,
+}
+
+
+const getContentTypeRoutePrefix = (
+  contentType: ContentType,
+): string | undefined => {
   switch (contentType) {
     case 'article':
-      return '/wiki'
+      return routes.wiki()
 
     case 'news':
-      return '/news'
+      return undefined
 
     case 'character':
-      return '/characters'
+      return undefined
 
     case 'location':
-      return '/locations'
+      return undefined
 
     case 'film':
-      return '/films'
+      return undefined
 
     case 'book':
-      return '/books'
+      return undefined
 
     default:
       return assertNever(contentType)
