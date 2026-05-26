@@ -38,6 +38,12 @@ export async function generateMetadata({
   return {
     title: `${article.title} | Thematic Content Platform`,
     description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      type: 'article',
+      publishedTime: article.publishedAt,
+    },
   }
 }
 
