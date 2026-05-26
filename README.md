@@ -12,6 +12,27 @@
 
 Это не production-ready CMS/SaaS-платформа, а **portfolio-grade prototype**, цель которого — показать архитектурный подход к разработке content-driven frontend-приложения.
 
+## Текущий вертикальный срез
+
+На текущем этапе реализован первый минимальный вертикальный срез content-платформы:
+
+- typed content model;
+- mock content source;
+- sample Alien demo content;
+- список статей `/wiki`;
+- страница статьи `/wiki/[slug]`;
+- related content block;
+- SEO metadata для article pages;
+- базовая навигация и layout.
+
+Этот срез показывает основной поток данных проекта:
+
+    content-domain
+      → content-source
+        → Next.js server page
+          → UI blocks
+            → SEO metadata
+
 ## Цели проекта
 
 - показать современную архитектуру content-driven приложения;
@@ -62,3 +83,27 @@ Quality:
 - Prettier
 - TypeScript
 - Vitest
+```
+
+## Roadmap
+
+### Milestone 0: Repository foundation
+
+- [x] Initialize Nx monorepo with Next.js app
+- [x] Add base README and modernization story
+- [x] Add docs/architecture.md
+- [x] Add docs/ai/project-map.md
+
+### Milestone 1: Content domain
+
+- [x] Add content-domain package
+- [x] Add mock content-source package
+- [x] Add sample Alien demo content
+
+### Milestone 2: First vertical slice
+
+- [x] Add first Article list page
+- [x] Add Article details page by slug
+- [x] Add related content block
+- [x] Add SEO metadata for article pages
+- [x] Add base navigation and layout
