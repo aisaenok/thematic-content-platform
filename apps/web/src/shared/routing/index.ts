@@ -1,1 +1,1 @@
-export { getContentRelationHref, routes } from './content-routes'
+export { getContentHref, getContentRelationHref, routes } from './content-routes'

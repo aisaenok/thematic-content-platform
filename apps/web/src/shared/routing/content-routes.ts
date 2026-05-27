@@ -12,6 +12,22 @@ export const routes = {
   wikiTag: (slug: Slug) => `/wiki/tags/${slug}`,
   news: () => '/news',
   newsItem: (slug: Slug) => `/news/${slug}`,
+  search: (query?: string) => {
+    if (!query) {
+      return '/search'
+    }
+
+    const searchParams = new URLSearchParams({
+      q: query,
+    })
+
+    return `/search?${searchParams.toString()}`
+  },
+}
+
+type ContentRouteTarget = {
+  contentType: ContentType
+  slug: Slug
 }
 
 const getContentTypeRoutePrefix = (
@@ -41,14 +57,24 @@ const getContentTypeRoutePrefix = (
   }
 }
 
-export const getContentRelationHref = (
-  relation: ContentRelation,
-): string | undefined => {
-  const routePrefix = getContentTypeRoutePrefix(relation.targetType)
+export const getContentHref = ({
+  contentType,
+  slug,
+}: ContentRouteTarget): string | undefined => {
+  const routePrefix = getContentTypeRoutePrefix(contentType)
 
   if (!routePrefix) {
     return undefined
   }
 
-  return `${routePrefix}/${relation.targetSlug}`
+  return `${routePrefix}/${slug}`
+}
+
+export const getContentRelationHref = (
+  relation: ContentRelation,
+): string | undefined => {
+  return getContentHref({
+    contentType: relation.targetType,
+    slug: relation.targetSlug,
+  })
 }

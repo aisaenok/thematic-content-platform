@@ -19,3 +19,6 @@ export {
 } from './categories'
 
 export { getTags, getTagBySlug, getArticlesByTagSlug } from './tags'
+
+export { searchContent, createSearchQueries } from './search'
+export type { ContentSearchResult } from './search'

@@ -16,6 +16,10 @@ const navigationItems = [
     href: routes.news(),
     label: 'News',
   },
+  {
+    href: routes.search(),
+    label: 'Search',
+  },
 ]
 
 export const SiteHeader = () => {
