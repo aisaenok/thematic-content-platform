@@ -4,6 +4,7 @@ import Link from 'next/link'
 import styles from './article-card.module.css'
 import { formatDisplayDate } from '@/shared/lib/date'
 import { routes } from '@/shared/routing'
+import { TagList } from '@/shared/ui/tag-list'
 
 type ArticleCardProps = {
   article: ArticleSummary
@@ -26,15 +27,11 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
 
       <p className={styles.description}>{article.description}</p>
 
-      <ul className={styles.tags} aria-label="Tags">
-        {article.tags.map((tag) => (
-          <li className={styles.tag} key={tag.id}>
-            <Link className={styles.tagLink} href={routes.wikiTag(tag.slug)}>
-              {tag.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <TagList
+        getTagHref={(tag) => routes.wikiTag(tag.slug)}
+        placement="card"
+        tags={article.tags}
+      />
     </article>
   )
 }

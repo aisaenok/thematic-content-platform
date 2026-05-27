@@ -2,6 +2,8 @@ import type { NewsItem } from '@thematic-content-platform/content-domain'
 
 import { getNewsBodyParagraphs } from '../../lib'
 import { formatDisplayDate } from '../../../../shared/lib/date'
+import { routes } from '../../../../shared/routing'
+import { TagList } from '../../../../shared/ui/tag-list'
 import styles from './news-details.module.css'
 
 type NewsDetailsProps = {
@@ -26,13 +28,11 @@ export const NewsDetails = ({ newsItem }: NewsDetailsProps) => {
 
         <p className={styles.description}>{newsItem.description}</p>
 
-        <ul className={styles.tags} aria-label="Tags">
-          {newsItem.tags.map((tag) => (
-            <li className={styles.tag} key={tag.id}>
-              {tag.title}
-            </li>
-          ))}
-        </ul>
+        <TagList
+          getTagHref={(tag) => routes.wikiTag(tag.slug)}
+          placement="details"
+          tags={newsItem.tags}
+        />
       </header>
 
       <div className={styles.content}>

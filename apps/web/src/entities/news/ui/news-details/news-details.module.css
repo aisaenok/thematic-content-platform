@@ -49,23 +49,6 @@
   line-height: 1.6;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0;
-  margin: 4px 0 0;
-  list-style: none;
-}
-
-.tag {
-  padding: 5px 11px;
-  border-radius: 999px;
-  background: #f3f3f3;
-  color: #444;
-  font-size: 13px;
-}
-
 .content {
   display: flex;
   flex-direction: column;

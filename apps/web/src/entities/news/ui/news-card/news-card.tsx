@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { formatDisplayDate } from '../../../../shared/lib/date'
 import { routes } from '../../../../shared/routing'
+import { TagList } from '../../../../shared/ui/tag-list'
 import styles from './news-card.module.css'
 
 type NewsCardProps = {
@@ -26,13 +27,11 @@ export const NewsCard = ({ newsItem }: NewsCardProps) => {
 
       <p className={styles.description}>{newsItem.description}</p>
 
-      <ul className={styles.tags} aria-label="Tags">
-        {newsItem.tags.map((tag) => (
-          <li className={styles.tag} key={tag.id}>
-            {tag.title}
-          </li>
-        ))}
-      </ul>
+      <TagList
+        getTagHref={(tag) => routes.wikiTag(tag.slug)}
+        placement="card"
+        tags={newsItem.tags}
+      />
     </article>
   )
 }

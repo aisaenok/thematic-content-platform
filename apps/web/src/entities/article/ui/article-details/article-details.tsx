@@ -5,6 +5,7 @@ import { getArticleBodyParagraphs } from '../../lib/get-article-body-paragraphs'
 import Link from 'next/link'
 import { formatDisplayDate } from '@/shared/lib/date'
 import { routes } from '@/shared/routing'
+import { TagList } from '@/shared/ui/tag-list'
 
 type ArticleDetailsProps = {
   article: Article
@@ -33,15 +34,11 @@ export const ArticleDetails = ({ article }: ArticleDetailsProps) => {
 
         <p className={styles.description}>{article.description}</p>
 
-        <ul className={styles.tags} aria-label="Tags">
-          {article.tags.map((tag) => (
-            <li className={styles.tag} key={tag.id}>
-              <Link className={styles.tagLink} href={routes.wikiTag(tag.slug)}>
-                {tag.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <TagList
+          getTagHref={(tag) => routes.wikiTag(tag.slug)}
+          placement="details"
+          tags={article.tags}
+        />
       </header>
 
       <div className={styles.content}>
