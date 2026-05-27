@@ -112,6 +112,22 @@ FileSystemContentSource
 
 Приложение не должно знать, откуда пришел контент: из mock-данных, CMS, файловой системы или внешнего API.
 
+`content-source` разделяет:
+
+- набор данных;
+- query-логику;
+- публичный API источника контента.
+
+Базовая query-логика создается через фабрику:
+
+    createArticleQueries(articles)
+
+Это позволяет тестировать поведение `getArticles`, `getArticleBySlug`, `getArticleById` и `getRelatedArticles` на изолированном test dataset, не завязываясь на demo-контент.
+
+Текущий mock source использует ту же фабрику поверх `mockArticles`.
+
+Такой подход нужен, чтобы позже можно было добавить CMS/API adapter, не переписывая UI и не смешивая данные, query-логику и транспорт.
+
 ### `packages/ui`
 
 Пакет для переиспользуемых UI-компонентов.
