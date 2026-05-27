@@ -85,6 +85,43 @@ Quality:
 - Vitest
 ```
 
+## Development
+
+Project runtime:
+
+```text
+Node.js: 20.19.5
+pnpm: see packageManager in package.json
+```
+
+Use Makefile commands instead of running long Nx commands manually:
+
+Install dependencies:
+
+```bash
+make install
+```
+
+Run development server:
+
+```bash
+make dev
+```
+
+Run local checks before commit:
+
+```bash
+make check
+```
+
+Run the same checks as CI:
+
+```bash
+make ci
+```
+
+The Makefile ensures commands run with the expected Node.js version. This is especially useful for Codex and IDE-launched subprocesses, which may otherwise use the system Node.js instead of the version selected manually in an interactive terminal.
+
 ## Roadmap
 
 ### Milestone 0: Repository foundation
