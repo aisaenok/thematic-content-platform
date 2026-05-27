@@ -8,7 +8,7 @@
   background: #fff;
 }
 
-.meta {
+.header {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -35,4 +35,8 @@
   margin: 0;
   color: #555;
   line-height: 1.6;
+}
+
+.footer {
+  margin-top: auto;
 }
