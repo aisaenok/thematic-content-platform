@@ -24,8 +24,14 @@
   margin: 0;
   color: #666;
   font-size: 14px;
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.eyebrow:hover {
+  color: #111;
+  text-decoration: underline;
 }
 
 .date {

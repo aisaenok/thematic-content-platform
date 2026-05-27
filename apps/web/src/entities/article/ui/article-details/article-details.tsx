@@ -2,6 +2,8 @@ import type { Article } from '@thematic-content-platform/content-domain'
 
 import styles from './article-details.module.css'
 import { getArticleBodyParagraphs } from '../../lib/get-article-body-paragraphs'
+import Link from 'next/link'
+import { routes } from '@/shared/routing'
 
 type ArticleDetailsProps = {
   article: Article
@@ -14,7 +16,12 @@ export const ArticleDetails = ({ article }: ArticleDetailsProps) => {
     <article className={styles.article}>
       <header className={styles.header}>
         <div className={styles.metaRow}>
-          <p className={styles.eyebrow}>{article.category.title}</p>
+          <Link
+            className={styles.eyebrow}
+            href={routes.wikiCategory(article.category.slug)}
+          >
+            {article.category.title}
+          </Link>
 
           <time className={styles.date} dateTime={article.publishedAt}>
             {new Date(article.publishedAt).toLocaleDateString('ru-RU')}

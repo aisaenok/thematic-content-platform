@@ -8,6 +8,7 @@ export const routes = {
   home: () => '/',
   wiki: () => '/wiki',
   wikiArticle: (slug: Slug) => `/wiki/${slug}`,
+  wikiCategory: (slug: Slug) => `/wiki/categories/${slug}`,
 }
 
 

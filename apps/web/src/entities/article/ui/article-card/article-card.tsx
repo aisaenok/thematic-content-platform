@@ -12,7 +12,9 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <article className={styles.card}>
       <div className={styles.meta}>
-        <span>{article.category.title}</span>
+        <Link href={routes.wikiCategory(article.category.slug)}>
+          {article.category.title}
+        </Link>
 
         <time dateTime={article.publishedAt}>
           {new Date(article.publishedAt).toLocaleDateString('ru-RU')}
