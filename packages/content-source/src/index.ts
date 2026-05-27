@@ -10,3 +10,5 @@ export {
   getCategoryBySlug,
   getArticlesByCategorySlug,
 } from './categories'
+
+export { getTags, getTagBySlug, getArticlesByTagSlug } from './tags'
