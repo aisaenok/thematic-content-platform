@@ -7,7 +7,7 @@ type ContentDetailsLayoutProps = {
   title: string
   description: string
   tags?: ReactNode
-  children: ReactNode
+  body: ReactNode
 }
 
 export const ContentDetailsLayout = ({
@@ -15,7 +15,7 @@ export const ContentDetailsLayout = ({
   title,
   description,
   tags,
-  children,
+  body,
 }: ContentDetailsLayoutProps) => {
   return (
     <article className={styles.article}>
@@ -29,7 +29,7 @@ export const ContentDetailsLayout = ({
         {tags ? <div className={styles.tags}>{tags}</div> : null}
       </header>
 
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>{body}</div>
     </article>
   )
 }

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { getNewsBodyParagraphs } from '../../lib'
 import { formatDisplayDate } from '../../../../shared/lib/date'
 import { routes } from '../../../../shared/routing'
-import { ContentBody } from '../../../../shared/ui/content-body'
 import { ContentDetailsLayout } from '../../../../shared/ui/content-details-layout'
 import { TagList } from '../../../../shared/ui/tag-list'
 import styles from './news-details.module.css'
@@ -18,6 +17,9 @@ export const NewsDetails = ({ newsItem }: NewsDetailsProps) => {
 
   return (
     <ContentDetailsLayout
+      body={bodyParagraphs.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
       description={newsItem.description}
       header={
         <>
@@ -41,8 +43,6 @@ export const NewsDetails = ({ newsItem }: NewsDetailsProps) => {
         />
       }
       title={newsItem.title}
-    >
-      <ContentBody paragraphs={bodyParagraphs} />
-    </ContentDetailsLayout>
+    />
   )
 }
