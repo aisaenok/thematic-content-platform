@@ -5,4 +5,8 @@ export {
   getRelatedArticles,
 } from './articles'
 
-export { mockArticles } from './mock/articles'
+export {
+  getCategories,
+  getCategoryBySlug,
+  getArticlesByCategorySlug,
+} from './categories'
