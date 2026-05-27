@@ -143,8 +143,8 @@ Quality:
 
 ### Milestone 6: Platform features
 
-- [ ] Add sitemap generation
-- [ ] Add RSS feed
+- [x] Add sitemap generation
+- [x] Add RSS feed
 - [ ] Add search prototype
 - [ ] Add CMS adapter spike
 - [ ] Add deployment notes
