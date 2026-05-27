@@ -3,6 +3,7 @@ import { getArticles } from '@thematic-content-platform/content-source'
 
 import styles from './page.module.css'
 import { ArticleCard } from '@/entities/article'
+import { EmptyState } from '@/shared/ui/empty-state'
 
 export const metadata: Metadata = {
   title: 'Wiki | Thematic Content Platform',
@@ -26,11 +27,18 @@ export default function WikiPage() {
         </p>
       </section>
 
-      <section className={styles.grid} aria-label="Wiki articles">
-        {articles.map((article) => (
-          <ArticleCard article={article} key={article.id} />
-        ))}
-      </section>
+      {articles.length === 0 ? (
+        <EmptyState
+          title="No articles yet"
+          description="В текущем content source пока нет опубликованных wiki-статей."
+        />
+      ) : (
+        <section className={styles.grid} aria-label="Wiki articles">
+          {articles.map((article) => (
+            <ArticleCard article={article} key={article.id} />
+          ))}
+        </section>
+      )}
     </div>
   )
 }
