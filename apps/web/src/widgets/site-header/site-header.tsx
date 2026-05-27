@@ -1,15 +1,20 @@
 import Link from 'next/link'
 
 import styles from './site-header.module.css'
+import { routes } from '../../shared/routing'
 
 const navigationItems = [
   {
-    href: '/',
+    href: routes.home(),
     label: 'Home',
   },
   {
-    href: '/wiki',
+    href: routes.wiki(),
     label: 'Wiki',
+  },
+  {
+    href: routes.news(),
+    label: 'News',
   },
 ]
 
@@ -17,7 +22,7 @@ export const SiteHeader = () => {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link className={styles.logo} href="/">
+        <Link className={styles.logo} href={routes.home()}>
           Thematic Content Platform
         </Link>
 

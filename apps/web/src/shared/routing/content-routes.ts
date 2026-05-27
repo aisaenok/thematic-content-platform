@@ -10,8 +10,9 @@ export const routes = {
   wikiArticle: (slug: Slug) => `/wiki/${slug}`,
   wikiCategory: (slug: Slug) => `/wiki/categories/${slug}`,
   wikiTag: (slug: Slug) => `/wiki/tags/${slug}`,
+  news: () => '/news',
+  newsItem: (slug: Slug) => `/news/${slug}`,
 }
-
 
 const getContentTypeRoutePrefix = (
   contentType: ContentType,
@@ -21,7 +22,7 @@ const getContentTypeRoutePrefix = (
       return routes.wiki()
 
     case 'news':
-      return undefined
+      return routes.news()
 
     case 'character':
       return undefined

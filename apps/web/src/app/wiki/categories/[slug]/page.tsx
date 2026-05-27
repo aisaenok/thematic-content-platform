@@ -54,10 +54,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params
   const category = getCategoryBySlug(slug)
 
-  console.log('category page slug:', slug)
-  console.log('categories:', getCategories())
-  console.log('category:', category)
-
   if (!category) {
     notFound()
   }
