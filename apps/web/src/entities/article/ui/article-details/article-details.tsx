@@ -35,7 +35,9 @@ export const ArticleDetails = ({ article }: ArticleDetailsProps) => {
         <ul className={styles.tags} aria-label="Tags">
           {article.tags.map((tag) => (
             <li className={styles.tag} key={tag.id}>
-              {tag.title}
+              <Link className={styles.tagLink} href={routes.wikiTag(tag.slug)}>
+                {tag.title}
+              </Link>
             </li>
           ))}
         </ul>

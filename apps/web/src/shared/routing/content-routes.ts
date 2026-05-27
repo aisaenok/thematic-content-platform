@@ -9,6 +9,7 @@ export const routes = {
   wiki: () => '/wiki',
   wikiArticle: (slug: Slug) => `/wiki/${slug}`,
   wikiCategory: (slug: Slug) => `/wiki/categories/${slug}`,
+  wikiTag: (slug: Slug) => `/wiki/tags/${slug}`,
 }
 
 

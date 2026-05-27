@@ -123,12 +123,12 @@ Quality:
 
 ### Milestone 4: Content navigation
 
-- [ ] Add category pages
-- [ ] Add tag pages
-- [ ] Add article filtering by category
-- [ ] Add article filtering by tag
-- [ ] Add empty states for filtered content
-- [ ] Add metadata for category and tag pages
+- [x] Add category pages
+- [x] Add tag pages
+- [x] Add article filtering by category
+- [x] Add article filtering by tag
+- [x] Add empty states for filtered content
+- [x] Add metadata for category and tag pages
 
 ### Milestone 5: Second content type
 
