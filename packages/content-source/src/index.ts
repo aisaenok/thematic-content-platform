@@ -6,6 +6,13 @@ export {
 } from './articles'
 
 export {
+  getNewsItems,
+  getNewsItemById,
+  getNewsItemBySlug,
+  getRelatedNewsItems,
+} from './news'
+
+export {
   getCategories,
   getCategoryBySlug,
   getArticlesByCategorySlug,
