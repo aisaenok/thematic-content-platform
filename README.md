@@ -122,6 +122,20 @@ make ci
 
 The Makefile ensures commands run with the expected Node.js version. This is especially useful for Codex and IDE-launched subprocesses, which may otherwise use the system Node.js instead of the version selected manually in an interactive terminal.
 
+## Quality checks
+
+Project checks are centralized through the Makefile.
+
+Local checks:
+
+```bash
+make check
+```
+
+CI uses the same check target after installing dependencies with a frozen lockfile.
+
+The project pins Node.js via `.nvmrc` / `.node-version`, and GitHub Actions uses the same Node.js version.
+
 ## Roadmap
 
 ### Milestone 0: Repository foundation
@@ -182,7 +196,7 @@ The Makefile ensures commands run with the expected Node.js version. This is esp
 
 - [x] Add sitemap generation
 - [x] Add RSS feed
-- [ ] Add search prototype
+- [x] Add search prototype
 - [ ] Add CMS adapter spike
 - [ ] Add deployment notes
-- [ ] Add CI checks
+- [x] Add CI checks
