@@ -1,6 +1,7 @@
 import type { NewsSummary } from '@thematic-content-platform/content-domain'
 import Link from 'next/link'
 
+import { formatDisplayDate } from '../../../../shared/lib/date'
 import { routes } from '../../../../shared/routing'
 import styles from './news-card.module.css'
 
@@ -15,7 +16,7 @@ export const NewsCard = ({ newsItem }: NewsCardProps) => {
         <span>{newsItem.category.title}</span>
 
         <time dateTime={newsItem.publishedAt}>
-          {new Date(newsItem.publishedAt).toLocaleDateString('ru-RU')}
+          {formatDisplayDate(newsItem.publishedAt)}
         </time>
       </div>
 

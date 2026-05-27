@@ -1,6 +1,7 @@
 import type { NewsItem } from '@thematic-content-platform/content-domain'
 
 import { getNewsBodyParagraphs } from '../../lib'
+import { formatDisplayDate } from '../../../../shared/lib/date'
 import styles from './news-details.module.css'
 
 type NewsDetailsProps = {
@@ -17,7 +18,7 @@ export const NewsDetails = ({ newsItem }: NewsDetailsProps) => {
           <p className={styles.eyebrow}>{newsItem.category.title}</p>
 
           <time className={styles.date} dateTime={newsItem.publishedAt}>
-            {new Date(newsItem.publishedAt).toLocaleDateString('ru-RU')}
+            {formatDisplayDate(newsItem.publishedAt)}
           </time>
         </div>
 

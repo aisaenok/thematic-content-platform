@@ -2,6 +2,7 @@ import type { ArticleSummary } from '@thematic-content-platform/content-domain'
 import Link from 'next/link'
 
 import styles from './article-card.module.css'
+import { formatDisplayDate } from '@/shared/lib/date'
 import { routes } from '@/shared/routing'
 
 type ArticleCardProps = {
@@ -16,9 +17,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
           {article.category.title}
         </Link>
 
-        <time dateTime={article.publishedAt}>
-          {new Date(article.publishedAt).toLocaleDateString('ru-RU')}
-        </time>
+        <time dateTime={article.publishedAt}>{formatDisplayDate(article.publishedAt)}</time>
       </div>
 
       <h2 className={styles.title}>
