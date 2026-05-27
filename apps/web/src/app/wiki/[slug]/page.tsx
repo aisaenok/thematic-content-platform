@@ -9,6 +9,7 @@ import { RelatedContentBlock } from '../../../widgets/related-content-block'
 import styles from './page.module.css'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
+import { ArticleDetails } from '@/entities/article'
 
 type ArticleDetailsPageProps = {
   params: Promise<{
@@ -56,8 +57,6 @@ export default async function ArticleDetailsPage({
     notFound()
   }
 
-  const bodyParagraphs = article.body.split('\n\n')
-
   return (
     <div className={styles.page}>
       <Breadcrumbs
@@ -75,38 +74,8 @@ export default async function ArticleDetailsPage({
           },
         ]}
       />
-
-      <article className={styles.article}>
-        <header className={styles.header}>
-          <p className={styles.eyebrow}>{article.category.title}</p>
-
-          <h1 className={styles.title}>{article.title}</h1>
-
-          <p className={styles.description}>{article.description}</p>
-
-          <div className={styles.meta}>
-            <time dateTime={article.publishedAt}>
-              {new Date(article.publishedAt).toLocaleDateString('ru-RU')}
-            </time>
-
-            <ul className={styles.tags} aria-label="Tags">
-              {article.tags.map((tag) => (
-                <li className={styles.tag} key={tag.id}>
-                  {tag.title}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </header>
-
-        <div className={styles.content}>
-          {bodyParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-
-        <RelatedContentBlock relations={article.related} />
-      </article>
+      <ArticleDetails article={article} />
+      <RelatedContentBlock relations={article.related} />
     </div>
   )
 }
