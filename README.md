@@ -93,12 +93,15 @@ Quality:
 - [x] Add base README and modernization story
 - [x] Add docs/architecture.md
 - [x] Add docs/ai/project-map.md
+- [x] Add docs/modernization-notes.md
 
 ### Milestone 1: Content domain
 
 - [x] Add content-domain package
 - [x] Add mock content-source package
 - [x] Add sample Alien demo content
+- [x] Add testable article query layer
+- [x] Cover article queries with tests
 
 ### Milestone 2: First vertical slice
 
@@ -107,3 +110,40 @@ Quality:
 - [x] Add related content block
 - [x] Add SEO metadata for article pages
 - [x] Add base navigation and layout
+
+### Milestone 3: Article slice stabilization
+
+- [x] Extract ArticleCard component
+- [x] Extract ArticleDetails component
+- [x] Extract article body parsing helper
+- [x] Extract Breadcrumbs component
+- [x] Add route helpers
+- [x] Add global not found page
+- [x] Add EmptyState component
+
+### Milestone 4: Content navigation
+
+- [ ] Add category pages
+- [ ] Add tag pages
+- [ ] Add article filtering by category
+- [ ] Add article filtering by tag
+- [ ] Add empty states for filtered content
+- [ ] Add metadata for category and tag pages
+
+### Milestone 5: Second content type
+
+- [ ] Add News domain model
+- [ ] Add mock news content source
+- [ ] Add news list page
+- [ ] Add news details page
+- [ ] Add related content support for news
+- [ ] Extend route helpers for news routes
+
+### Milestone 6: Platform features
+
+- [ ] Add sitemap generation
+- [ ] Add RSS feed
+- [ ] Add search prototype
+- [ ] Add CMS adapter spike
+- [ ] Add deployment notes
+- [ ] Add CI checks
