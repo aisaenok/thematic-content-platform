@@ -250,6 +250,17 @@ FileSystemContentSource
 
 ## Принятые ограничения
 
+## UI composition rule
+
+Codex should not replace Article and News components with one generic domain-level `ContentCard` or `ContentDetails` unless explicitly requested.
+
+Preferred pattern:
+
+```text
+shared/ui component = visual layout / slots
+entity component = domain data → UI composition
+```
+
 ## Правило для внутренних packages
 
 Внутренние `packages/*` используются приложением Next.js как source code dependencies.

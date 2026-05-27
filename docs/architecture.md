@@ -136,6 +136,38 @@ FileSystemContentSource
 
 Выносить в `packages/ui` стоит только то, что реально переиспользуется между несколькими частями приложения.
 
+## UI composition approach
+
+Проект использует композиционный подход к UI.
+
+Общие визуальные паттерны выносятся в `shared/ui`, но domain-specific компоненты остаются в `entities`.
+
+Пример:
+
+```text
+shared/ui/content-preview-card
+  → отвечает за визуальный layout карточки
+
+entities/article/ArticleCard
+  → мапит ArticleSummary в ContentPreviewCard
+
+entities/news/NewsCard
+  → мапит NewsSummary в ContentPreviewCard
+```
+
+То же правило применяется к details-страницам:
+
+```text
+shared/ui/content-details-layout
+  → отвечает за общий layout content details страницы
+
+entities/article/ArticleDetails
+  → мапит Article в ContentDetailsLayout
+
+entities/news/NewsDetails
+  → мапит NewsItem в ContentDetailsLayout
+```
+
 ## Модель использования внутренних пакетов
 
 На текущем этапе внутренние `packages/*` используются как source code dependencies для Next.js-приложения.
