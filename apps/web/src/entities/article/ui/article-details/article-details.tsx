@@ -1,13 +1,14 @@
 import type { Article } from '@thematic-content-platform/content-domain'
 
 import styles from './article-details.module.css'
+import { getArticleBodyParagraphs } from '../../lib/get-article-body-paragraphs'
 
 type ArticleDetailsProps = {
   article: Article
 }
 
 export const ArticleDetails = ({ article }: ArticleDetailsProps) => {
-  const bodyParagraphs = article.body.split('\n\n')
+  const bodyParagraphs = getArticleBodyParagraphs(article)
 
   return (
     <article className={styles.article}>
