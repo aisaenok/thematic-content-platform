@@ -132,12 +132,14 @@ Quality:
 
 ### Milestone 5: Second content type
 
-- [ ] Add News domain model
-- [ ] Add mock news content source
-- [ ] Add news list page
-- [ ] Add news details page
-- [ ] Add related content support for news
-- [ ] Extend route helpers for news routes
+- [x] Add News domain model
+- [x] Add mock news content source
+- [x] Add news query API
+- [x] Cover news queries with tests
+- [x] Add news list page
+- [x] Add news details page
+- [x] Add related content support for news
+- [x] Extend route helpers for news routes
 
 ### Milestone 6: Platform features
 
