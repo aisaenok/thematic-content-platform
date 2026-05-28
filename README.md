@@ -18,6 +18,10 @@ Production demo:
 
 https://thematic-content-platform-web.vercel.app/
 
+## Case study
+
+- [Инженерный кейс проекта](docs/portfolio-case.md)
+
 ## Текущий вертикальный срез
 
 На текущем этапе реализован первый минимальный вертикальный срез content-платформы:
