@@ -251,6 +251,71 @@ Semantic tokens или component-level tokens вводятся не сразу, 
 - `--button-padding-x` — component token;
 - `--page-section-gap` — semantic layout token.
 
+### Когда достаточно primitive tokens
+
+Primitive tokens достаточно для простых, централизованных и вспомогательных компонентов, если:
+
+- компонент имеет небольшую CSS-модель;
+- у компонента нет нескольких visual variants;
+- компонент не требует отдельной темизации или density modes;
+- компонент не предполагает внешних переопределений;
+- все стили компонента уже централизованы в одном CSS Module;
+- значения не являются стабильным публичным visual API компонента.
+
+Примеры компонентов, где primitive tokens могут быть достаточны:
+
+- `Breadcrumbs`;
+- `TagList` в текущей версии;
+- простые `Badge`, `Button`, `TextField` в первой версии;
+- `SiteFooter`;
+- небольшие локальные layout-компоненты.
+
+Для `Breadcrumbs` сейчас выбран подход:
+
+```text
+Breadcrumbs → primitive tokens only
+```
+
+Причина в том, что компонент простой, централизованный и пока не требует отдельного component-token слоя. Сам факт использования на нескольких страницах еще не делает его кандидатом на собственные `--breadcrumbs-*` tokens.
+
+### Когда нужны component-level tokens
+
+Component-level tokens вводятся не просто потому, что компонент часто используется.
+
+Частота использования сама по себе не является достаточным основанием.
+
+Component-level tokens нужны, когда компонент:
+
+- имеет сложную визуальную модель;
+- является ключевым building block для нескольких экранов;
+- имеет несколько variants, sizes или density states;
+- требует темизации;
+- должен поддерживать внешние переопределения;
+- отражает стабильный visual contract дизайн-системы;
+- содержит значения, которые рискованно менять напрямую через primitive tokens.
+
+Примеры:
+
+- `ContentPreviewCard`;
+- `ContentDetailsLayout`;
+- `EmptyState`;
+- будущие сложные компоненты вроде `Modal`, `DataGrid/Table`, `NavigationShell`, `FormField`.
+
+Для `ContentPreviewCard` и `ContentDetailsLayout` выбран подход:
+
+```text
+key shared UI layout components → component-level tokens
+```
+
+Причина в том, что они задают важные визуальные паттерны для `Article`, `News` и `Search` UI.
+
+### Практическое правило выбора
+
+```text
+Повторное использование компонента на разных страницах — это аргумент за shared/ui компонент.
+Повторение visual pattern между разными компонентами, наличие variants/theme overrides/stable visual contract — это аргумент за component-level tokens.
+```
+
 ## Future work
 
 Следующими естественными шагами для mini UI Kit выглядят:
