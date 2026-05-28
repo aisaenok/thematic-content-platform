@@ -4,7 +4,7 @@ NODE_VERSION := $(shell sed 's/^v//' .nvmrc)
 NODE_MAJOR := $(shell echo $(NODE_VERSION) | cut -d. -f1)
 WEB_PROJECT := @thematic-content-platform/web
 
-.PHONY: install dev lint test build check ci clean reset doctor
+.PHONY: install dev lint test build check ci clean reset doctor e2e e2e-prod dev-e2e
 
 define with_node
 	set -euo pipefail; \
@@ -64,3 +64,12 @@ clean:
 
 reset:
 	@$(call with_node,pnpm nx reset)
+
+e2e:
+	@$(call with_node,pnpm exec playwright test)
+
+e2e-prod:
+	@$(call with_node,PLAYWRIGHT_BASE_URL=https://thematic-content-platform-web.vercel.app pnpm exec playwright test)
+
+dev-e2e:
+	@$(call with_node,pnpm nx dev $(WEB_PROJECT) --port=3000 --hostname=127.0.0.1)
