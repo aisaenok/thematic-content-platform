@@ -1,38 +1,55 @@
 .emptyState {
+  --empty-state-min-height: 280px;
+  --empty-state-padding: var(--space-8);
+  --empty-state-border-color: var(--color-border-strong);
+  --empty-state-border-radius: var(--radius-xl);
+  --empty-state-background: var(--color-background-muted);
+  --empty-state-content-max-width: 520px;
+  --empty-state-eyebrow-margin-bottom: var(--space-2);
+  --empty-state-eyebrow-color: var(--color-text-subtle);
+  --empty-state-eyebrow-font-size: var(--font-size-sm);
+  --empty-state-eyebrow-letter-spacing: var(--letter-spacing-wide);
+  --empty-state-title-font-size: var(--font-size-3xl);
+  --empty-state-title-line-height: var(--line-height-snug);
+  --empty-state-description-margin-top: var(--space-4);
+  --empty-state-description-color: var(--color-text-muted);
+  --empty-state-description-line-height: var(--line-height-base);
+  --empty-state-action-margin-top: var(--space-6);
+
   display: grid;
-  min-height: 280px;
+  min-height: var(--empty-state-min-height);
   place-items: center;
-  padding: 32px;
-  border: 1px dashed #d5d5d5;
-  border-radius: 24px;
-  background: #fafafa;
+  padding: var(--empty-state-padding);
+  border: 1px dashed var(--empty-state-border-color);
+  border-radius: var(--empty-state-border-radius);
+  background: var(--empty-state-background);
 }
 
 .content {
-  max-width: 520px;
+  max-width: var(--empty-state-content-max-width);
   text-align: center;
 }
 
 .eyebrow {
-  margin: 0 0 8px;
-  color: #666;
-  font-size: 14px;
+  margin: 0 0 var(--empty-state-eyebrow-margin-bottom);
+  color: var(--empty-state-eyebrow-color);
+  font-size: var(--empty-state-eyebrow-font-size);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--empty-state-eyebrow-letter-spacing);
 }
 
 .title {
   margin: 0;
-  font-size: 28px;
-  line-height: 1.2;
+  font-size: var(--empty-state-title-font-size);
+  line-height: var(--empty-state-title-line-height);
 }
 
 .description {
-  margin: 16px 0 0;
-  color: #555;
-  line-height: 1.6;
+  margin: var(--empty-state-description-margin-top) 0 0;
+  color: var(--empty-state-description-color);
+  line-height: var(--empty-state-description-line-height);
 }
 
 .action {
-  margin-top: 24px;
+  margin-top: var(--empty-state-action-margin-top);
 }
