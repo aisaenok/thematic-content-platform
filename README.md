@@ -12,6 +12,12 @@
 
 Это не production-ready CMS/SaaS-платформа, а **portfolio-grade prototype**, цель которого — показать архитектурный подход к разработке content-driven frontend-приложения.
 
+## Demo
+
+Production demo:
+
+https://thematic-content-platform-web.vercel.app/
+
 ## Текущий вертикальный срез
 
 На текущем этапе реализован первый минимальный вертикальный срез content-платформы:
@@ -197,6 +203,7 @@ The project pins Node.js via `.nvmrc` / `.node-version`, and GitHub Actions uses
 - [x] Add sitemap generation
 - [x] Add RSS feed
 - [x] Add search prototype
-- [ ] Add CMS adapter spike
-- [ ] Add deployment notes
+- [x] Add deployment notes
 - [x] Add CI checks
+- [x] Deploy to Vercel
+- [ ] Add CMS adapter spike

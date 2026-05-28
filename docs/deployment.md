@@ -12,6 +12,14 @@ The project is an Nx monorepo with a Next.js application and internal workspace 
     packages/content-domain
     packages/content-source
 
+## Production URL
+
+Current production deployment:
+
+    https://thematic-content-platform-web.vercel.app/
+
+Preview/deployment-specific URLs are protected by Vercel Standard Protection and should not be used in README, resume or portfolio links.
+
 ## Runtime
 
 The project pins the Node.js version through:
@@ -89,6 +97,8 @@ Recommended settings:
 
 `/` means the repository root in the Vercel UI.
 
+The repository root must stay the Vercel Root Directory, because Nx needs access to the entire workspace root during install and build.
+
 Nx builds the Next.js application inside the app directory, so Vercel must point to the app-level .next directory instead of looking for .next at the repository root.
 
 Do not set Root Directory to `apps/web`, because Nx needs access to the full workspace root:
@@ -111,6 +121,8 @@ This value is used by:
 - sitemap generation;
 - RSS feed generation;
 - absolute public URLs.
+
+`NEXT_PUBLIC_SITE_URL` should always match the public production URL. Both `/sitemap.xml` and `/rss.xml` should emit production URLs based on this value.
 
 For local development, the app falls back to:
 
