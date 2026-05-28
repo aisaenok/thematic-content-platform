@@ -1,0 +1,19 @@
+:root {
+  --font-family-base: Arial, Helvetica, sans-serif;
+
+  --font-size-xs: 13px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+
+  --line-height-tight: 1;
+  --line-height-snug: 1.2;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.8;
+
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-tight: -0.04em;
+}

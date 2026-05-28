@@ -1,0 +1,4 @@
+:root {
+  --shadow-none: none;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.06);
+}

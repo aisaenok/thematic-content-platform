@@ -21,6 +21,7 @@ https://thematic-content-platform-web.vercel.app/
 ## Case study
 
 - [Инженерный кейс проекта](docs/portfolio-case.md)
+- [UI Kit и design-system подход](docs/ui-kit.md)
 
 ## Текущий вертикальный срез
 
