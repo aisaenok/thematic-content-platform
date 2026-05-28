@@ -142,6 +142,35 @@ CI uses the same check target after installing dependencies with a frozen lockfi
 
 The project pins Node.js via `.nvmrc` / `.node-version`, and GitHub Actions uses the same Node.js version.
 
+### E2E smoke tests
+
+Run local smoke tests against the local dev server:
+
+```bash
+make e2e
+```
+
+Run smoke tests against the production deployment:
+
+```bash
+make e2e-prod
+```
+
+Playwright smoke tests cover the main public routes:
+
+- `/`
+- `/wiki`
+- `/wiki/[slug]`
+- `/wiki/categories/[slug]`
+- `/wiki/tags/[slug]`
+- `/news`
+- `/news/[slug]`
+- `/search?q=xenomorph`
+- `/sitemap.xml`
+- `/rss.xml`
+
+E2E tests are not included in the default `make check` target yet. They are kept as explicit commands to avoid making local and CI checks heavier before the test suite stabilizes.
+
 ## Roadmap
 
 ### Milestone 0: Repository foundation
@@ -205,5 +234,7 @@ The project pins Node.js via `.nvmrc` / `.node-version`, and GitHub Actions uses
 - [x] Add search prototype
 - [x] Add deployment notes
 - [x] Add CI checks
+- [x] Add Playwright smoke e2e tests
+- [x] Add production smoke test command
 - [x] Deploy to Vercel
 - [ ] Add CMS adapter spike
