@@ -115,14 +115,84 @@ Primitive tokens описывают базовую шкалу значений:
 - типографику;
 - тени.
 
+Primitive tokens отвечают на вопрос:
+
+```text
+какие значения допустимы в дизайн-системе?
+```
+
+Например:
+
+```css
+--space-4: 16px;
+```
+
+Такой token означает:
+
+```text
+16px входит в разрешенную spacing scale проекта.
+```
+
+Но он не означает:
+
+```text
+все компоненты, которые используют --space-4, можно безопасно изменить одним изменением значения token.
+```
+
+Это особенно важно для spacing и других geometric tokens. Primitive token вроде `--space-4` не является стабильным публичным API конкретного компонента. Он только фиксирует, что такое значение разрешено внутри общей шкалы.
+
 Они не обязаны объяснять бизнес-смысл конкретного решения. Например, `margin-top: var(--space-1)` говорит, что используется значение из spacing scale, но не объясняет само дизайн-решение, почему именно такой отступ выбран в конкретном UI-контексте.
+
+Один и тот же primitive token может использоваться в разных смыслах:
+
+- `gap` между элементами карточки;
+- `padding` внутри кнопки;
+- `margin` между секциями;
+- внутренний отступ `input`;
+- расстояние между `title` и `description`.
+
+Формально значение может быть одинаковым, но семантически это разные UI-решения.
+
+Поэтому в проекте используется двухуровневая модель tokens.
+
+Первый уровень — primitive tokens:
+
+```text
+--space-4
+--color-text-primary
+--radius-lg
+--font-size-md
+```
+
+Они отвечают на вопрос:
+
+```text
+какие значения допустимы в дизайн-системе?
+```
+
+Второй уровень — semantic/component tokens:
+
+```text
+--content-preview-card-padding
+--content-preview-card-gap
+--button-padding-x
+--page-section-gap
+--tag-list-details-margin-top
+```
+
+Они отвечают на вопрос:
+
+```text
+какое значение должно использоваться в конкретном UI-контексте?
+```
 
 Semantic tokens или component-level tokens вводятся не сразу, а только когда для этого появляется причина:
 
 - значение начинает повторяться в нескольких компонентах или состояниях;
 - значение становится частью публичного API компонента;
 - значение отражает отдельное дизайн-решение, которое нужно стабилизировать;
-- значение сложно безопасно менять через primitive token без влияния на другие места.
+- значение сложно безопасно менять через primitive token без влияния на другие места;
+- значение относится к ключевому shared/ui компоненту.
 
 Пример semantic/component token:
 
@@ -130,12 +200,56 @@ Semantic tokens или component-level tokens вводятся не сразу, 
 --tag-list-details-margin-top: var(--space-1);
 ```
 
+Пример для `ContentPreviewCard`.
+
+Для маленького или локального компонента допустимо использовать primitive tokens напрямую:
+
+```css
+.card {
+  padding: var(--space-6);
+  gap: var(--space-4);
+}
+```
+
+Но для ключевого shared/ui компонента со временем можно перейти на component-level tokens:
+
+```css
+:root {
+  --content-preview-card-padding: var(--space-6);
+  --content-preview-card-gap: var(--space-4);
+  --content-preview-card-radius: var(--radius-lg);
+  --content-preview-card-border-color: var(--color-border);
+  --content-preview-card-background: var(--color-surface);
+}
+
+.card {
+  padding: var(--content-preview-card-padding);
+  gap: var(--content-preview-card-gap);
+  border-radius: var(--content-preview-card-radius);
+  border-color: var(--content-preview-card-border-color);
+  background: var(--content-preview-card-background);
+}
+```
+
+Это не означает, что такой второй слой нужно вводить сразу для каждого свойства. Сначала primitive tokens, потом semantic/component tokens там, где появилась повторяемость, стабильный контракт или отдельное дизайн-решение.
+
 Но такие tokens не нужно вводить заранее для каждого локального значения, иначе дизайн-система быстро станет шумной и сложной в поддержке.
 
 Текущее правило проекта:
 
-- используем primitive tokens по умолчанию;
-- вводим semantic/component tokens только при повторяемости, публичности или наличии отдельного дизайн-решения.
+- используем primitive tokens по умолчанию для локальных и простых случаев;
+- вводим semantic/component tokens только при повторяемости, публичности или наличии отдельного дизайн-решения;
+- маленькие локальные компоненты могут использовать primitive tokens напрямую;
+- ключевые `shared/ui` компоненты постепенно могут получать component-level tokens;
+- layout/page spacing со временем может получить semantic layout tokens;
+- изменение primitive token не должно рассматриваться как безопасный способ точечной настройки конкретного компонента.
+
+Практическое правило для текущего проекта:
+
+- `--space-4` — primitive token;
+- `--content-preview-card-gap` — component token;
+- `--button-padding-x` — component token;
+- `--page-section-gap` — semantic layout token.
 
 ## Future work
 

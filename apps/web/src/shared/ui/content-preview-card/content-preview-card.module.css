@@ -1,25 +1,42 @@
 .card {
+  --content-preview-card-gap: var(--space-4);
+  --content-preview-card-padding: var(--space-6);
+  --content-preview-card-border-color: var(--color-border);
+  --content-preview-card-radius: var(--radius-lg);
+  --content-preview-card-background: var(--color-surface);
+  --content-preview-card-header-gap: var(--space-4);
+  --content-preview-card-header-color: var(--color-text-subtle);
+  --content-preview-card-header-font-size: var(--font-size-sm);
+  --content-preview-card-title-font-size: var(--font-size-2xl);
+  --content-preview-card-title-line-height: var(--line-height-snug);
+  --content-preview-card-title-color: var(--color-text-primary);
+  --content-preview-card-title-hover-decoration: underline;
+  --content-preview-card-description-color: var(--color-text-muted);
+  --content-preview-card-description-line-height: var(--line-height-base);
+  --content-preview-card-footer-margin-top: auto;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px;
-  border: 1px solid #e5e5e5;
-  border-radius: 20px;
-  background: #fff;
+  gap: var(--content-preview-card-gap);
+  padding: var(--content-preview-card-padding);
+  border: 1px solid var(--content-preview-card-border-color);
+  border-radius: var(--content-preview-card-radius);
+  background: var(--content-preview-card-background);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  color: #777;
-  font-size: 14px;
+  gap: var(--content-preview-card-header-gap);
+  color: var(--content-preview-card-header-color);
+  font-size: var(--content-preview-card-header-font-size);
 }
 
 .title {
   margin: 0;
-  font-size: 24px;
-  line-height: 1.2;
+  color: var(--content-preview-card-title-color);
+  font-size: var(--content-preview-card-title-font-size);
+  line-height: var(--content-preview-card-title-line-height);
 }
 
 .title a {
@@ -28,15 +45,15 @@
 }
 
 .title a:hover {
-  text-decoration: underline;
+  text-decoration: var(--content-preview-card-title-hover-decoration);
 }
 
 .description {
   margin: 0;
-  color: #555;
-  line-height: 1.6;
+  color: var(--content-preview-card-description-color);
+  line-height: var(--content-preview-card-description-line-height);
 }
 
 .footer {
-  margin-top: auto;
+  margin-top: var(--content-preview-card-footer-margin-top);
 }
