@@ -6,11 +6,11 @@ import {
   getTags,
 } from '@thematic-content-platform/content-source'
 
-import styles from './page.module.css'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
 import { EmptyState } from '@/shared/ui/empty-state'
 import { ArticleCard } from '@/entities/article'
+import { Page } from '@/shared/ui/page'
 
 type TagPageProps = {
   params: Promise<{
@@ -58,7 +58,7 @@ export default async function TagPage({ params }: TagPageProps) {
   const articles = getArticlesByTagSlug(tag.slug)
 
   return (
-    <div className={styles.page}>
+    <Page size="lg">
       <Breadcrumbs
         items={[
           {
@@ -75,28 +75,27 @@ export default async function TagPage({ params }: TagPageProps) {
         ]}
       />
 
-      <section className={styles.hero}>
-        <p className={styles.eyebrow}>Wiki tag</p>
+      <Page.Header
+        description={`Подборка опубликованных материалов, помеченных тегом ${tag.title}.`}
+        eyebrow="Wiki tag"
+        title={tag.title}
+      />
 
-        <h1 className={styles.title}>{tag.title}</h1>
-
-        <p className={styles.description}>
-          Подборка опубликованных материалов, помеченных тегом {tag.title}.
-        </p>
-      </section>
-
-      {articles.length === 0 ? (
-        <EmptyState
-          title="No articles with this tag"
-          description="В текущем content source пока нет опубликованных статей с этим тегом."
-        />
-      ) : (
-        <section className={styles.grid} aria-label={`${tag.title} articles`}>
-          {articles.map((article) => (
+      <Page.Body
+        ariaLabel={`${tag.title} articles`}
+        variant={articles.length === 0 ? 'default' : 'grid'}
+      >
+        {articles.length === 0 ? (
+          <EmptyState
+            title="No articles with this tag"
+            description="В текущем content source пока нет опубликованных статей с этим тегом."
+          />
+        ) : (
+          articles.map((article) => (
             <ArticleCard article={article} key={article.id} />
-          ))}
-        </section>
-      )}
-    </div>
+          ))
+        )}
+      </Page.Body>
+    </Page>
   )
 }

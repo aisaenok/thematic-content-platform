@@ -5,11 +5,11 @@ import {
   getCategories,
   getCategoryBySlug,
 } from '@thematic-content-platform/content-source'
-import styles from './page.module.css'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
 import { EmptyState } from '@/shared/ui/empty-state'
 import { ArticleCard } from '@/entities/article'
+import { Page } from '@/shared/ui/page'
 
 type CategoryPageProps = {
   params: Promise<{
@@ -61,7 +61,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const articles = getArticlesByCategorySlug(category.slug)
 
   return (
-    <div className={styles.page}>
+    <Page size="lg">
       <Breadcrumbs
         items={[
           {
@@ -78,28 +78,27 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         ]}
       />
 
-      <section className={styles.hero}>
-        <p className={styles.eyebrow}>Wiki category</p>
+      <Page.Header
+        description={category.description}
+        eyebrow="Wiki category"
+        title={category.title}
+      />
 
-        <h1 className={styles.title}>{category.title}</h1>
-
-        {category.description ? (
-          <p className={styles.description}>{category.description}</p>
-        ) : null}
-      </section>
-
-      {articles.length === 0 ? (
-        <EmptyState
-          title="No articles in this category"
-          description="В текущем content source пока нет опубликованных статей в этой категории."
-        />
-      ) : (
-        <section className={styles.grid} aria-label={`${category.title} articles`}>
-          {articles.map((article) => (
+      <Page.Body
+        ariaLabel={`${category.title} articles`}
+        variant={articles.length === 0 ? 'default' : 'grid'}
+      >
+        {articles.length === 0 ? (
+          <EmptyState
+            title="No articles in this category"
+            description="В текущем content source пока нет опубликованных статей в этой категории."
+          />
+        ) : (
+          articles.map((article) => (
             <ArticleCard article={article} key={article.id} />
-          ))}
-        </section>
-      )}
-    </div>
+          ))
+        )}
+      </Page.Body>
+    </Page>
   )
 }
