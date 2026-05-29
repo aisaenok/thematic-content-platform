@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { searchContent } from '@thematic-content-platform/content-source'
 
-import { routes } from '../../shared/routing'
+import { Page } from '../../shared/ui/page'
+import { SearchForm } from './_ui/search-form'
 import { SearchResults } from './_ui/search-results'
-import styles from './page.module.css'
 
 type SearchPageProps = {
   searchParams: Promise<{
@@ -23,39 +23,18 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const results = searchContent(normalizedQuery)
 
   return (
-    <div className={styles.page}>
-      <section className={styles.hero}>
-        <p className={styles.eyebrow}>Search prototype</p>
+    <Page size="lg">
+      <Page.Header
+        description="Server-side search prototype across wiki articles and news items."
+        eyebrow="Search prototype"
+        title="Search content"
+      />
 
-        <h1 className={styles.title}>Search content</h1>
+      <Page.Body>
+        <SearchForm defaultValue={normalizedQuery} />
 
-        <p className={styles.description}>
-          Server-side search prototype across wiki articles and news items.
-        </p>
-      </section>
-
-      <form className={styles.form} action={routes.search()} method="get">
-        <label className={styles.label} htmlFor="search-query">
-          Search query
-        </label>
-
-        <div className={styles.controls}>
-          <input
-            className={styles.input}
-            defaultValue={normalizedQuery}
-            id="search-query"
-            name="q"
-            placeholder="Try xenomorph, platform, facehugger..."
-            type="search"
-          />
-
-          <button className={styles.button} type="submit">
-            Search
-          </button>
-        </div>
-      </form>
-
-      <SearchResults query={normalizedQuery} results={results} />
-    </div>
+        <SearchResults query={normalizedQuery} results={results} />
+      </Page.Body>
+    </Page>
   )
 }
