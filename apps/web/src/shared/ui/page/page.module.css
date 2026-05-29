@@ -1,0 +1,75 @@
+.page {
+  --page-width-md: 900px;
+  --page-width-lg: 1120px;
+  --page-padding-inline: var(--space-4);
+  --page-padding-block: var(--space-12);
+  --page-header-margin-bottom: var(--space-8);
+  --page-eyebrow-margin-bottom: var(--space-2);
+  --page-eyebrow-color: var(--color-text-subtle);
+  --page-eyebrow-font-size: var(--font-size-sm);
+  --page-eyebrow-letter-spacing: var(--letter-spacing-wide);
+  --page-title-line-height: var(--line-height-tight);
+  --page-description-max-width: 720px;
+  --page-description-margin-top: var(--space-5);
+  --page-description-color: var(--color-text-muted);
+  --page-description-font-size: var(--font-size-lg);
+  --page-description-line-height: var(--line-height-base);
+  --page-grid-min-column-width: 280px;
+  --page-grid-gap: var(--space-5);
+  --page-footer-margin-top: var(--space-8);
+
+  width: min(var(--page-width-lg), calc(100% - var(--page-padding-inline) * 2));
+  margin: 0 auto;
+  padding: var(--page-padding-block) 0;
+}
+
+.md {
+  width: min(var(--page-width-md), calc(100% - var(--page-padding-inline) * 2));
+}
+
+.lg {
+  width: min(var(--page-width-lg), calc(100% - var(--page-padding-inline) * 2));
+}
+
+.header {
+  margin-bottom: var(--page-header-margin-bottom);
+}
+
+.eyebrow {
+  margin: 0 0 var(--page-eyebrow-margin-bottom);
+  color: var(--page-eyebrow-color);
+  font-size: var(--page-eyebrow-font-size);
+  text-transform: uppercase;
+  letter-spacing: var(--page-eyebrow-letter-spacing);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: var(--page-title-line-height);
+}
+
+.description {
+  max-width: var(--page-description-max-width);
+  margin: var(--page-description-margin-top) 0 0;
+  color: var(--page-description-color);
+  font-size: var(--page-description-font-size);
+  line-height: var(--page-description-line-height);
+}
+
+.body {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--page-grid-min-column-width), 1fr)
+  );
+  gap: var(--page-grid-gap);
+}
+
+.footer {
+  margin-top: var(--page-footer-margin-top);
+}
