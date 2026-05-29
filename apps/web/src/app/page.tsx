@@ -3,6 +3,7 @@ import { LinkButton } from '../shared/ui/link-button'
 import {
   homePageArchitectureHighlights,
   homePageFeatures,
+  homePageProjectSnapshot,
 } from './_content/home-page-content'
 import { routes } from '@/shared/routing'
 
@@ -10,26 +11,42 @@ export default function HomePage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <p className={styles.eyebrow}>
-          Портфолио-прототип content platform
-        </p>
+        <div className={styles.heroContent}>
+          <p className={styles.eyebrow}>
+            Портфолио-прототип content platform
+          </p>
 
-        <h1 className={styles.title}>Thematic Content Platform</h1>
+          <h1 className={styles.title}>Thematic Content Platform</h1>
 
-        <p className={styles.description}>
-          Портфолио-прототип content-driven frontend platform на Next.js App
-          Router, Nx и TypeScript. Проект показывает typed content modeling,
-          multiple content types, category и tag navigation, search, SEO
-          metadata, RSS, sitemap, CI checks и Vercel deployment.
-        </p>
+          <p className={styles.description}>
+            Портфолио-прототип content-driven frontend platform на Next.js App
+            Router, Nx и TypeScript. Проект показывает typed content modeling,
+            multiple content types, category и tag navigation, search, SEO
+            metadata, RSS, sitemap, CI checks и Vercel deployment.
+          </p>
 
-        <div className={styles.actions}>
-          <LinkButton href={routes.wiki()}>Открыть wiki-статьи</LinkButton>
+          <div className={styles.actions}>
+            <LinkButton href={routes.wiki()}>Открыть wiki-статьи</LinkButton>
 
-          <LinkButton href={routes.news()} variant="secondary">
-            Открыть news
-          </LinkButton>
+            <LinkButton href={routes.news()} variant="secondary">
+              Открыть news
+            </LinkButton>
+          </div>
         </div>
+
+        <aside className={styles.heroPanel} aria-label="Краткое описание проекта">
+          <p className={styles.heroPanelEyebrow}>Project snapshot</p>
+
+          <h2 className={styles.heroPanelTitle}>Что видно сразу</h2>
+
+          <div className={styles.heroPanelGrid}>
+            {homePageProjectSnapshot.map((item) => (
+              <span className={styles.heroPanelItem} key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </aside>
       </section>
 
       <section className={styles.section}>
@@ -42,9 +59,13 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {homePageFeatures.map((feature) => (
-            <article className={styles.card} key={feature.title}>
+        <div className={styles.featureGrid}>
+          {homePageFeatures.map((feature, index) => (
+            <article className={styles.featureCard} key={feature.title}>
+              <span className={styles.cardIndex}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
               <h3 className={styles.cardTitle}>{feature.title}</h3>
 
               <p className={styles.cardDescription}>{feature.description}</p>
@@ -64,12 +85,16 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={styles.architectureList}>
           {homePageArchitectureHighlights.map((item) => (
-            <article className={styles.card} key={item.title}>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
+            <article className={styles.architectureItem} key={item.title}>
+              <span className={styles.architectureMarker} />
 
-              <p className={styles.cardDescription}>{item.description}</p>
+              <div className={styles.architectureContent}>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+
+                <p className={styles.cardDescription}>{item.description}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -78,24 +103,27 @@ export default function HomePage() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Изучить прототип</h2>
-
-          <p className={styles.sectionDescription}>
-            Откройте основные публичные routes и посмотрите на текущие вертикальные срезы.
-          </p>
         </div>
 
-        <div className={styles.linkGrid}>
-          <LinkButton href={routes.wiki()} variant="secondary">
-            Wiki
-          </LinkButton>
+        <div className={styles.exploreBox}>
+          <p className={styles.sectionDescription}>
+            Начните со списков контента, затем откройте details pages,
+            category/tag navigation или server-side search.
+          </p>
 
-          <LinkButton href={routes.news()} variant="secondary">
-            News
-          </LinkButton>
+          <div className={styles.linkGrid}>
+            <LinkButton href={routes.wiki()} variant="secondary">
+              Wiki
+            </LinkButton>
 
-          <LinkButton href={routes.search()} variant="secondary">
-            Search
-          </LinkButton>
+            <LinkButton href={routes.news()} variant="secondary">
+              News
+            </LinkButton>
+
+            <LinkButton href={routes.search()} variant="secondary">
+              Search
+            </LinkButton>
+          </div>
         </div>
       </section>
     </div>

@@ -6,7 +6,55 @@
 }
 
 .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.95fr);
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.heroContent {
   max-width: 760px;
+}
+
+.heroPanel {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.heroPanelEyebrow {
+  margin: var(--space-0) 0 var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.heroPanelTitle {
+  margin: var(--space-0);
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-snug);
+}
+
+.heroPanelGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.heroPanelItem {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
 }
 
 .eyebrow {
@@ -60,17 +108,33 @@
   line-height: var(--line-height-base);
 }
 
-.grid {
+.featureGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-5);
 }
 
-.card {
+.featureCard {
+  position: relative;
   padding: var(--space-6);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  background: var(--color-background-muted);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.cardIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .cardTitle {
@@ -86,6 +150,48 @@
   line-height: var(--line-height-base);
 }
 
+.architectureList {
+  display: grid;
+  gap: var(--space-0);
+}
+
+.architectureItem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.architectureItem:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.architectureMarker {
+  width: 12px;
+  height: 12px;
+  margin-top: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.architectureContent {
+  min-width: 0;
+}
+
+.exploreBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-background-muted);
+}
+
 .linkGrid {
   display: flex;
   flex-wrap: wrap;
@@ -97,7 +203,20 @@
     padding: var(--space-12) 0 var(--space-12);
   }
 
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
   .section {
     margin-top: var(--space-12);
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .exploreBox {
+    align-items: start;
   }
 }

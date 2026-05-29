@@ -3,6 +3,14 @@ export type HomePageCard = {
   description: string
 }
 
+export const homePageProjectSnapshot = [
+  'Next.js App Router',
+  'Nx monorepo',
+  'Typed content model',
+  'SEO / RSS / Sitemap',
+  'CI / Vercel / E2E',
+]
+
 export const homePageFeatures: HomePageCard[] = [
   {
     title: 'Wiki articles',
@@ -12,12 +20,12 @@ export const homePageFeatures: HomePageCard[] = [
   {
     title: 'News content type',
     description:
-      'Второй content slice, который показывает, что платформа не ограничивается только wiki-сценарием.',
+      'Второй content slice, который показывает, что платформа поддерживает больше одного типа контента.',
   },
   {
     title: 'Category and tag navigation',
     description:
-      'Фильтруемые category и tag routes, построенные поверх той же content model.',
+      'Category и tag routes для навигации по контенту, построенные поверх той же content model.',
   },
   {
     title: 'Search prototype',
