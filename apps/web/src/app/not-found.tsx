@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { routes } from '../shared/routing'
+import { LinkButton } from '../shared/ui/link-button'
 import styles from './not-found.module.css'
 
 export default function NotFoundPage() {
@@ -17,13 +16,13 @@ export default function NotFoundPage() {
         </p>
 
         <div className={styles.actions}>
-          <Link className={styles.primaryLink} href={routes.home()}>
+          <LinkButton href={routes.home()}>
             Go home
-          </Link>
+          </LinkButton>
 
-          <Link className={styles.secondaryLink} href={routes.wiki()}>
+          <LinkButton href={routes.wiki()} variant="secondary">
             Open wiki
-          </Link>
+          </LinkButton>
         </div>
       </section>
     </div>

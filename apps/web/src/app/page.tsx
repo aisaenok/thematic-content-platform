@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import styles from './page.module.css'
+import { LinkButton } from '../shared/ui/link-button'
 import { routes } from '@/shared/routing'
 
 export default function HomePage() {
@@ -16,9 +15,9 @@ export default function HomePage() {
           Первый demo domain построен вокруг вселенной Alien.
         </p>
 
-        <Link className={styles.link} href={routes.wiki()}>
+        <LinkButton href={routes.wiki()}>
           Open wiki articles
-        </Link>
+        </LinkButton>
       </section>
     </div>
   )
