@@ -168,10 +168,11 @@ After deployment, check the following routes:
     /wiki
     /news
     /search?q=xenomorph
+    /robots.txt
     /sitemap.xml
     /rss.xml
 
-Also verify that `sitemap.xml` and `rss.xml` use the real Vercel URL from `NEXT_PUBLIC_SITE_URL`, not `localhost` or `example.com`.
+Also verify that `robots.txt`, `sitemap.xml` and `rss.xml` use the real Vercel URL from `NEXT_PUBLIC_SITE_URL`, not `localhost` or `example.com`.
 
 Playwright smoke tests are intentionally kept outside the default `make check` target for now. They can be run manually against local development or production deployment.
 

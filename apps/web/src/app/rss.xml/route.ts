@@ -73,9 +73,7 @@ export function GET() {
 <rss version="2.0">
   <channel>
     <title>${escapeXml(siteConfig.name)}</title>
-    <description>${escapeXml(
-      'Portfolio-grade wiki/content platform prototype for thematic encyclopedia websites.',
-    )}</description>
+    <description>${escapeXml(siteConfig.description)}</description>
     <link>${escapeXml(siteConfig.url)}</link>
     <language>ru-RU</language>
     <lastBuildDate>${formatRssDate(new Date().toISOString())}</lastBuildDate>

@@ -1,16 +1,44 @@
 import type { Metadata } from 'next'
 import { SiteFooter } from '../widgets/site-footer'
 import { SiteHeader } from '../widgets/site-header'
+import { siteConfig } from '../shared/config/site'
 
 import './global.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Thematic Content Platform',
-    template: '%s | Thematic Content Platform',
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    'Portfolio-grade wiki/content platform prototype for thematic encyclopedia websites.',
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  generator: 'Next.js',
+  keywords: [
+    'content platform',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Nx',
+    'SEO',
+    'RSS',
+    'sitemap',
+  ],
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.shortDescription,
+    url: '/',
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: siteConfig.name,
+    description: siteConfig.shortDescription,
+  },
+  alternates: {
+    canonical: '/',
+  },
 }
 
 type RootLayoutProps = {
