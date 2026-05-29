@@ -514,9 +514,9 @@ key shared UI layout components → component-level tokens
 Повторение visual pattern между разными компонентами, наличие variants/theme overrides/stable visual contract — это аргумент за component-level tokens.
 ```
 
-## Storybook
+## Storybook showcase
 
-Storybook в проекте используется как локальная showcase-витрина для UI Kit слоя.
+Storybook в проекте используется как локальная витрина UI Kit слоя.
 
 Запуск локального Storybook:
 
@@ -530,15 +530,52 @@ Static Storybook build:
 make build-storybook
 ```
 
+Stories сгруппированы по UI Kit-разделам и позволяют смотреть компоненты вне route/page контекста.
+
+Storybook показывает:
+
+- primitive components;
+- feedback/content components;
+- layout patterns.
+
+Global design tokens подключаются в Storybook через global CSS приложения, поэтому showcase использует тот же базовый визуальный слой, что и web app.
+
 На текущем этапе Storybook покрывает выбранные `shared/ui` компоненты:
 
-- `LinkButton`;
-- `TagList`;
-- `EmptyState`;
-- `ContentPreviewCard`;
-- `Page`.
+- `LinkButton` — primitive CTA/link button;
+- `TagList` — tag placements;
+- `EmptyState` — feedback/empty state;
+- `ContentPreviewCard` — article/news preview pattern;
+- `Page` — compound page layout with `default`, `grid`, `stackSeparated` body variants.
 
-Это первый минимальный слой UI Kit showcase. Он нужен не для route-level screens и не для визуального regression testing, а для изолированного просмотра ключевых primitives и layout components на фоне подключенных global styles и design tokens.
+Это не отдельный design-system portal и не отдельно деплоимая документационная площадка. На текущем этапе Storybook нужен как локальный UI Kit showcase для изолированного просмотра ключевых компонентов и layout patterns.
+
+### Когда обновлять Storybook
+
+Storybook стоит обновлять, когда:
+
+- добавляется новый reusable `shared/ui` компонент;
+- меняется API существующего `shared/ui` компонента;
+- добавляется новый visual variant;
+- меняется layout behavior компонента;
+- компонент становится частью UI Kit showcase.
+
+Storybook не нужен для:
+
+- всех route pages;
+- domain-specific page composition;
+- временных route-local компонентов;
+- каждого мелкого CSS-refactoring, если visual API компонента не изменился.
+
+### Storybook и CI
+
+Storybook пока не входит в основной CI и в `make check`.
+
+Причина простая:
+
+- основной quality gate должен оставаться быстрым;
+- Storybook build можно запускать явно через `make build-storybook`;
+- включение Storybook build в CI можно рассмотреть позже, если UI Kit слой станет более критичным.
 
 ## Future work
 

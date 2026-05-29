@@ -178,25 +178,29 @@ E2E tests are not included in the default `make check` target yet. They are kept
 
 ### Storybook
 
-UI Kit showcase can be run locally:
+Storybook is used as a local UI Kit showcase for selected shared UI components.
+
+Run Storybook locally:
 
 ```bash
 make storybook
 ```
 
-Static Storybook build:
+Build static Storybook:
 
 ```bash
 make build-storybook
 ```
 
-Storybook currently documents selected shared UI components:
+Current Storybook showcase includes:
 
 - `LinkButton`
 - `TagList`
 - `EmptyState`
 - `ContentPreviewCard`
-- `Page`
+- `Page layout`
+
+Storybook is intentionally not included in the default `make check` target yet. It can be run explicitly when working on UI Kit components or reviewing visual changes.
 
 ## Roadmap
 
