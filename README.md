@@ -176,6 +176,28 @@ Playwright smoke tests cover the main public routes:
 
 E2E tests are not included in the default `make check` target yet. They are kept as explicit commands to avoid making local and CI checks heavier before the test suite stabilizes.
 
+### Storybook
+
+UI Kit showcase can be run locally:
+
+```bash
+make storybook
+```
+
+Static Storybook build:
+
+```bash
+make build-storybook
+```
+
+Storybook currently documents selected shared UI components:
+
+- `LinkButton`
+- `TagList`
+- `EmptyState`
+- `ContentPreviewCard`
+- `Page`
+
 ## Roadmap
 
 ### Milestone 0: Repository foundation

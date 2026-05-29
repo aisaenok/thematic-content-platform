@@ -4,7 +4,7 @@ NODE_VERSION := $(shell sed 's/^v//' .nvmrc)
 NODE_MAJOR := $(shell echo $(NODE_VERSION) | cut -d. -f1)
 WEB_PROJECT := @thematic-content-platform/web
 
-.PHONY: install dev lint test build check ci clean reset doctor e2e e2e-prod dev-e2e
+.PHONY: install dev lint test build check ci clean reset doctor e2e e2e-prod dev-e2e storybook build-storybook
 
 define with_node
 	set -euo pipefail; \
@@ -73,3 +73,9 @@ e2e-prod:
 
 dev-e2e:
 	@$(call with_node,pnpm nx dev $(WEB_PROJECT) --port=3000 --hostname=127.0.0.1)
+
+storybook:
+	@$(call with_node,pnpm nx storybook $(WEB_PROJECT) --port=4600)
+
+build-storybook:
+	@$(call with_node,pnpm nx build-storybook $(WEB_PROJECT) --output-dir=../../dist/storybook/web)

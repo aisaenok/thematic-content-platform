@@ -55,3 +55,6 @@ vitest.config.*.timestamp*
 test-results/
 playwright-report/
 blob-report/
+
+storybook-static
+apps/web/debug-storybook.log

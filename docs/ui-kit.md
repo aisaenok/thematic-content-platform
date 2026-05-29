@@ -514,6 +514,32 @@ key shared UI layout components → component-level tokens
 Повторение visual pattern между разными компонентами, наличие variants/theme overrides/stable visual contract — это аргумент за component-level tokens.
 ```
 
+## Storybook
+
+Storybook в проекте используется как локальная showcase-витрина для UI Kit слоя.
+
+Запуск локального Storybook:
+
+```bash
+make storybook
+```
+
+Static Storybook build:
+
+```bash
+make build-storybook
+```
+
+На текущем этапе Storybook покрывает выбранные `shared/ui` компоненты:
+
+- `LinkButton`;
+- `TagList`;
+- `EmptyState`;
+- `ContentPreviewCard`;
+- `Page`.
+
+Это первый минимальный слой UI Kit showcase. Он нужен не для route-level screens и не для визуального regression testing, а для изолированного просмотра ключевых primitives и layout components на фоне подключенных global styles и design tokens.
+
 ## Future work
 
 Следующими естественными шагами для mini UI Kit выглядят:
@@ -526,6 +552,5 @@ key shared UI layout components → component-level tokens
 - `SectionHeader`;
 - `Card` primitive;
 - улучшение responsive rules;
-- возможный Storybook позже;
 - темизация и dark mode позже;
 - i18n-friendly UI texts позже.
