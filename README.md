@@ -22,6 +22,7 @@ https://thematic-content-platform-web.vercel.app/
 
 - [Инженерный кейс проекта](docs/portfolio-case.md)
 - [UI Kit и design-system подход](docs/ui-kit.md)
+- [Добавление нового content type](docs/content-type-extension.md)
 
 ## Текущий вертикальный срез
 
