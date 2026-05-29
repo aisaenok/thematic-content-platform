@@ -81,6 +81,204 @@ NewsCard
 
 Такой подход удерживает чистую границу между domain representation и visual composition.
 
+## Page layout pattern
+
+`Page` — это compound layout component для page-level композиции.
+
+Он задает:
+
+- ширину страницы;
+- горизонтальные ограничения;
+- вертикальный rhythm;
+- стандартную header-зону страницы;
+- body-зону;
+- footer-зону при необходимости.
+
+Базовый пример:
+
+```tsx
+<Page size="lg">
+  <Page.Header
+    eyebrow="Demo domain"
+    title="Wiki articles"
+    description="..."
+  />
+
+  <Page.Body variant="grid" ariaLabel="Wiki articles">
+    ...
+  </Page.Body>
+</Page>
+```
+
+### Page
+
+`Page` отвечает за внешний контейнер страницы.
+
+- `size="lg"` используется для list, search, category и tag pages;
+- `size="md"` используется для details pages.
+
+`Page` не является domain component и не должен знать про:
+
+- `Article`;
+- `News`;
+- `Category`;
+- `Tag`;
+- `content-source`;
+- `routes`.
+
+Его задача — только page-level layout pattern. Domain/page components сами решают, какие данные и какие дочерние блоки положить внутрь `Page`.
+
+### Page.Header
+
+`Page.Header` отвечает за hero/header-зону страницы:
+
+- eyebrow;
+- `h1` title;
+- description.
+
+`Breadcrumbs` не нужно помещать внутрь `Page.Header`. Это отдельная navigation zone внутри `Page`.
+
+Правильная модель:
+
+```tsx
+<Page size="md">
+  <Breadcrumbs items={...} />
+
+  <Page.Body>
+    ...
+  </Page.Body>
+</Page>
+```
+
+### Page.Body
+
+`Page.Body` отвечает за основную область страницы.
+
+Поддерживаемые variants:
+
+#### default
+
+Обычная body-зона без дополнительного layout-паттерна.
+
+Используется, когда содержимое само управляет своим layout или содержит route-local composition.
+
+Пример:
+
+```tsx
+<Page.Body>
+  <SearchForm />
+  <SearchResults />
+</Page.Body>
+```
+
+#### grid
+
+Карточная сетка для списков контента.
+
+Используется для:
+
+- wiki article list;
+- news list;
+- category article list;
+- tag article list.
+
+Пример:
+
+```tsx
+<Page.Body variant="grid" ariaLabel="Wiki articles">
+  {articles.map((article) => (
+    <ArticleCard article={article} key={article.id} />
+  ))}
+</Page.Body>
+```
+
+#### stackSeparated
+
+Вертикальный stack секций с визуальным разделителем между соседними детьми.
+
+Используется для details pages:
+
+- article details + related content;
+- news details + related content.
+
+Пример:
+
+```tsx
+<Page.Body variant="stackSeparated" ariaLabel="Article content">
+  <ArticleDetails article={article} />
+  <RelatedContentBlock relations={article.related} />
+</Page.Body>
+```
+
+### Page.Footer
+
+`Page.Footer` — необязательная footer-зона страницы, если конкретному page-level сценарию нужно завершение после основной body-области.
+
+### EmptyState внутри Page.Body
+
+`EmptyState` должен рендериться внутри `Page.Body`, а не заменять `Page.Body`.
+
+Правильно:
+
+```tsx
+<Page.Body variant={items.length === 0 ? 'default' : 'grid'}>
+  {items.length === 0 ? (
+    <EmptyState ... />
+  ) : (
+    items.map(...)
+  )}
+</Page.Body>
+```
+
+Неправильно:
+
+```tsx
+{items.length === 0 ? (
+  <EmptyState ... />
+) : (
+  <Page.Body variant="grid">
+    ...
+  </Page.Body>
+)}
+```
+
+Причина простая: `EmptyState` — это состояние содержимого страницы, а не альтернатива основной body-зоне.
+
+### Разделение секций
+
+Разделение секций на странице должно принадлежать layout-компоненту, если это внешний page-level spacing.
+
+Например, `Page.Body variant="stackSeparated"` отвечает за separator между:
+
+- `ArticleDetails` и `RelatedContentBlock`;
+- `NewsDetails` и `RelatedContentBlock`.
+
+Правильное распределение ответственности:
+
+```text
+Page.Body stackSeparated
+  → внешний rhythm между секциями
+  → divider между соседними секциями
+
+RelatedContentBlock
+  → собственный внутренний layout
+  → header
+  → grid
+  → cards
+  → typography
+```
+
+Неправильная модель:
+
+```css
+RelatedContentBlock {
+  padding-top: 40px;
+  border-top: 1px solid ...;
+}
+```
+
+Такой подход смешивает внутренний UI блока и внешний layout относительно предыдущей секции.
+
 ## Tokens-first подход
 
 Проект движется в сторону tokens-first подхода.
