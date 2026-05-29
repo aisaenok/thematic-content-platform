@@ -1,10 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import {
-  getArticlesByTagSlug,
-  getTagBySlug,
-  getTags,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
@@ -19,7 +15,7 @@ type TagPageProps = {
 }
 
 export function generateStaticParams() {
-  return getTags().map((tag) => ({
+  return contentApi.getTags().map((tag) => ({
     slug: tag.slug,
   }))
 }
@@ -28,7 +24,7 @@ export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
   const { slug } = await params
-  const tag = getTagBySlug(slug)
+  const tag = contentApi.getTagBySlug(slug)
 
   if (!tag) {
     return {
@@ -49,13 +45,13 @@ export async function generateMetadata({
 
 export default async function TagPage({ params }: TagPageProps) {
   const { slug } = await params
-  const tag = getTagBySlug(slug)
+  const tag = contentApi.getTagBySlug(slug)
 
   if (!tag) {
     notFound()
   }
 
-  const articles = getArticlesByTagSlug(tag.slug)
+  const articles = contentApi.getArticlesByTagSlug(tag.slug)
 
   return (
     <Page size="lg">

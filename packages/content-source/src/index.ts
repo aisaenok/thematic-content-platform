@@ -1,24 +1,8 @@
-export {
-  getArticles,
-  getArticleById,
-  getArticleBySlug,
-  getRelatedArticles,
-} from './articles'
-
-export {
-  getNewsItems,
-  getNewsItemById,
-  getNewsItemBySlug,
-  getRelatedNewsItems,
-} from './news'
-
-export {
-  getCategories,
-  getCategoryBySlug,
-  getArticlesByCategorySlug,
-} from './categories'
-
-export { getTags, getTagBySlug, getArticlesByTagSlug } from './tags'
-
-export { searchContent, createSearchQueries } from './search'
+export type { ContentSource } from './content-source'
+export { contentApi } from './content-api'
+export { createArticleQueries } from './articles'
+export { createCategoryQueries } from './categories'
+export { createTagQueries } from './tags'
+export { createNewsQueries } from './news'
+export { createSearchQueries } from './search'
 export type { ContentSearchResult } from './search'

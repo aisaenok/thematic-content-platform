@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { searchContent } from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { Page } from '../../shared/ui/page'
 import { SearchForm } from './_ui/search-form'
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const { q = '' } = await searchParams
   const normalizedQuery = q.trim()
-  const results = searchContent(normalizedQuery)
+  const results = contentApi.searchContent(normalizedQuery)
 
   return (
     <Page size="lg">

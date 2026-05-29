@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import {
-  getNewsItemBySlug,
-  getNewsItems,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { NewsDetails } from '../../../entities/news'
 import { Page } from '../../../shared/ui/page'
@@ -18,7 +15,7 @@ type NewsDetailsPageProps = {
 }
 
 export function generateStaticParams() {
-  return getNewsItems().map((newsItem) => ({
+  return contentApi.getNewsItems().map((newsItem) => ({
     slug: newsItem.slug,
   }))
 }
@@ -27,7 +24,7 @@ export async function generateMetadata({
   params,
 }: NewsDetailsPageProps): Promise<Metadata> {
   const { slug } = await params
-  const newsItem = getNewsItemBySlug(slug)
+  const newsItem = contentApi.getNewsItemBySlug(slug)
 
   if (!newsItem) {
     return {
@@ -51,7 +48,7 @@ export default async function NewsDetailsPage({
   params,
 }: NewsDetailsPageProps) {
   const { slug } = await params
-  const newsItem = getNewsItemBySlug(slug)
+  const newsItem = contentApi.getNewsItemBySlug(slug)
 
   if (!newsItem) {
     notFound()

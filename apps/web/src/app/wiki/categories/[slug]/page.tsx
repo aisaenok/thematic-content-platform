@@ -1,10 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import {
-  getArticlesByCategorySlug,
-  getCategories,
-  getCategoryBySlug,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
 import { EmptyState } from '@/shared/ui/empty-state'
@@ -18,7 +14,7 @@ type CategoryPageProps = {
 }
 
 export function generateStaticParams() {
-  return getCategories().map((category) => ({
+  return contentApi.getCategories().map((category) => ({
     slug: category.slug,
   }))
 }
@@ -27,7 +23,7 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params
-  const category = getCategoryBySlug(slug)
+  const category = contentApi.getCategoryBySlug(slug)
 
   if (!category) {
     return {
@@ -52,13 +48,13 @@ export async function generateMetadata({
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params
-  const category = getCategoryBySlug(slug)
+  const category = contentApi.getCategoryBySlug(slug)
 
   if (!category) {
     notFound()
   }
 
-  const articles = getArticlesByCategorySlug(category.slug)
+  const articles = contentApi.getArticlesByCategorySlug(category.slug)
 
   return (
     <Page size="lg">

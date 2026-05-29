@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import {
-  getArticleBySlug,
-  getArticles,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 import { RelatedContentBlock } from '../../../widgets/related-content-block'
 import { Page } from '../../../shared/ui/page'
 
@@ -18,7 +15,7 @@ type ArticleDetailsPageProps = {
 }
 
 export function generateStaticParams() {
-  return getArticles().map((article) => ({
+  return contentApi.getArticles().map((article) => ({
     slug: article.slug,
   }))
 }
@@ -27,7 +24,7 @@ export async function generateMetadata({
   params,
 }: ArticleDetailsPageProps): Promise<Metadata> {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = contentApi.getArticleBySlug(slug)
 
   if (!article) {
     return {
@@ -51,7 +48,7 @@ export default async function ArticleDetailsPage({
   params,
 }: ArticleDetailsPageProps) {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
+  const article = contentApi.getArticleBySlug(slug)
 
   if (!article) {
     notFound()

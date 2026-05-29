@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getNewsItems } from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { NewsCard } from '../../entities/news'
 import { EmptyState } from '../../shared/ui/empty-state'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default function NewsPage() {
-  const newsItems = getNewsItems()
+  const newsItems = contentApi.getNewsItems()
 
   return (
     <Page size="lg">

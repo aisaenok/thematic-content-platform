@@ -1,7 +1,4 @@
-import {
-  getArticles,
-  getNewsItems,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { siteConfig } from '../../shared/config/site'
 import { routes } from '../../shared/routing'
@@ -45,14 +42,14 @@ const createRssItem = (item: RssItem): string => {
 }
 
 const getRssItems = (): RssItem[] => {
-  const articleItems: RssItem[] = getArticles().map((article) => ({
+  const articleItems: RssItem[] = contentApi.getArticles().map((article) => ({
     title: article.title,
     description: article.description,
     href: routes.wikiArticle(article.slug),
     publishedAt: article.publishedAt,
   }))
 
-  const newsItems: RssItem[] = getNewsItems().map((newsItem) => ({
+  const newsItems: RssItem[] = contentApi.getNewsItems().map((newsItem) => ({
     title: newsItem.title,
     description: newsItem.description,
     href: routes.newsItem(newsItem.slug),

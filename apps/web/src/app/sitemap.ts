@@ -1,10 +1,5 @@
 import type { MetadataRoute } from 'next'
-import {
-  getArticles,
-  getCategories,
-  getNewsItems,
-  getTags,
-} from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { siteConfig } from '../shared/config/site'
 import { routes } from '../shared/routing'
@@ -35,14 +30,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const articleRoutes: MetadataRoute.Sitemap = getArticles().map((article) => ({
+  const articleRoutes: MetadataRoute.Sitemap = contentApi.getArticles().map((article) => ({
     url: createAbsoluteUrl(routes.wikiArticle(article.slug)),
     lastModified: article.publishedAt,
     changeFrequency: 'monthly',
     priority: 0.7,
   }))
 
-  const categoryRoutes: MetadataRoute.Sitemap = getCategories().map(
+  const categoryRoutes: MetadataRoute.Sitemap = contentApi.getCategories().map(
     (category) => ({
       url: createAbsoluteUrl(routes.wikiCategory(category.slug)),
       changeFrequency: 'weekly',
@@ -50,13 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   )
 
-  const tagRoutes: MetadataRoute.Sitemap = getTags().map((tag) => ({
+  const tagRoutes: MetadataRoute.Sitemap = contentApi.getTags().map((tag) => ({
     url: createAbsoluteUrl(routes.wikiTag(tag.slug)),
     changeFrequency: 'weekly',
     priority: 0.5,
   }))
 
-  const newsRoutes: MetadataRoute.Sitemap = getNewsItems().map((newsItem) => ({
+  const newsRoutes: MetadataRoute.Sitemap = contentApi.getNewsItems().map((newsItem) => ({
     url: createAbsoluteUrl(routes.newsItem(newsItem.slug)),
     lastModified: newsItem.publishedAt,
     changeFrequency: 'weekly',

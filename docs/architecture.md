@@ -128,6 +128,57 @@ FileSystemContentSource
 
 Такой подход нужен, чтобы позже можно было добавить CMS/API adapter, не переписывая UI и не смешивая данные, query-логику и транспорт.
 
+#### ContentSource adapter boundary
+
+Внутри `packages/content-source` добавлен отдельный adapter boundary:
+
+```text
+apps/web
+  → contentApi from @thematic-content-platform/content-source
+    → ContentSource contract
+      → mockContentSource сейчас
+      → CMS/API adapter позже
+```
+
+`ContentSource` описывает текущий read/query contract слоя доступа к контенту.
+
+`mockContentSource` — это текущая реализация этого контракта поверх mock/local данных и уже существующих query-модулей.
+
+`contentApi` — это public facade для consumers со стороны web app.
+
+Web app при этом не импортирует `mockContentSource` напрямую и не знает, какая реализация сейчас активна.
+
+На текущем этапе `contentApi` указывает на `mockContentSource`.
+
+Ручные named query wrappers в `index.ts` не используются, чтобы не дублировать контракт `ContentSource` вручную в виде boilerplate-фасада.
+
+Это важно по двум причинам:
+
+- `content-source` выглядит как заменяемый слой данных, а не как набор случайных mock-файлов;
+- будущий CMS/API adapter можно будет добавить внутри того же boundary, не смешивая data fetching с UI и route composition.
+
+Это оставлено намеренно:
+
+- для обратной совместимости;
+- чтобы у web app оставалась единая frontend-facing точка входа в content layer;
+- чтобы будущую CMS/API реализацию можно было подключить за `contentApi`.
+
+На этом этапе public API не переводится на `async`.
+
+Например, текущий контракт по-прежнему остается синхронным:
+
+```ts
+getArticles(): ArticleSummary[]
+```
+
+а не:
+
+```ts
+getArticles(): Promise<ArticleSummary[]>
+```
+
+Будущий реальный CMS/API adapter, скорее всего, потребует отдельного этапа `async content-source migration`, потому что он затронет routes, sitemap, RSS, search и тесты. В текущей задаче такая миграция намеренно не выполняется.
+
 ### `packages/ui`
 
 Пакет для переиспользуемых UI-компонентов.

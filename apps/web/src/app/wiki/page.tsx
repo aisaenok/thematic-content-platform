@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getArticles } from '@thematic-content-platform/content-source'
+import { contentApi } from '@thematic-content-platform/content-source'
 
 import { ArticleCard } from '@/entities/article'
 import { EmptyState } from '@/shared/ui/empty-state'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default function WikiPage() {
-  const articles = getArticles()
+  const articles = contentApi.getArticles()
 
   return (
     <Page size="lg">
