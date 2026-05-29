@@ -15,7 +15,7 @@ type PageHeaderProps = {
   description?: string
 }
 
-type PageBodyVariant = 'default' | 'grid'
+type PageBodyVariant = 'default' | 'grid' | 'stackSeparated'
 
 type PageBodyProps = {
   children: ReactNode
@@ -48,7 +48,11 @@ const PageBody = ({
   variant = 'default',
   ariaLabel,
 }: PageBodyProps) => {
-  const className = [styles.body, variant === 'grid' ? styles.grid : undefined]
+  const className = [
+    styles.body,
+    variant === 'grid' ? styles.grid : undefined,
+    variant === 'stackSeparated' ? styles.stackSeparated : undefined,
+  ]
     .filter(Boolean)
     .join(' ')
 

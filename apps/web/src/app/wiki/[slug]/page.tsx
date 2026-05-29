@@ -5,8 +5,8 @@ import {
   getArticles,
 } from '@thematic-content-platform/content-source'
 import { RelatedContentBlock } from '../../../widgets/related-content-block'
+import { Page } from '../../../shared/ui/page'
 
-import styles from './page.module.css'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
 import { routes } from '@/shared/routing'
 import { ArticleDetails } from '@/entities/article'
@@ -58,7 +58,7 @@ export default async function ArticleDetailsPage({
   }
 
   return (
-    <div className={styles.page}>
+    <Page size="md">
       <Breadcrumbs
         items={[
           {
@@ -74,8 +74,11 @@ export default async function ArticleDetailsPage({
           },
         ]}
       />
-      <ArticleDetails article={article} />
-      <RelatedContentBlock relations={article.related} />
-    </div>
+
+      <Page.Body ariaLabel="Article content" variant="stackSeparated">
+        <ArticleDetails article={article} />
+        <RelatedContentBlock relations={article.related} />
+      </Page.Body>
+    </Page>
   )
 }

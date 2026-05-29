@@ -6,10 +6,10 @@ import {
 } from '@thematic-content-platform/content-source'
 
 import { NewsDetails } from '../../../entities/news'
+import { Page } from '../../../shared/ui/page'
 import { routes } from '../../../shared/routing'
 import { Breadcrumbs } from '../../../shared/ui/breadcrumbs'
 import { RelatedContentBlock } from '../../../widgets/related-content-block'
-import styles from './page.module.css'
 
 type NewsDetailsPageProps = {
   params: Promise<{
@@ -58,7 +58,7 @@ export default async function NewsDetailsPage({
   }
 
   return (
-    <div className={styles.page}>
+    <Page size="md">
       <Breadcrumbs
         items={[
           {
@@ -74,8 +74,11 @@ export default async function NewsDetailsPage({
           },
         ]}
       />
-      <NewsDetails newsItem={newsItem} />
-      <RelatedContentBlock relations={newsItem.related} />
-    </div>
+
+      <Page.Body ariaLabel="News content" variant="stackSeparated">
+        <NewsDetails newsItem={newsItem} />
+        <RelatedContentBlock relations={newsItem.related} />
+      </Page.Body>
+    </Page>
   )
 }

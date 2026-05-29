@@ -16,6 +16,9 @@
   --page-description-line-height: var(--line-height-base);
   --page-grid-min-column-width: 280px;
   --page-grid-gap: var(--space-5);
+  --page-stack-separated-gap: var(--space-10);
+  --page-stack-separated-padding-top: var(--space-10);
+  --page-stack-separated-border-color: var(--color-border);
   --page-footer-margin-top: var(--space-8);
 
   width: min(var(--page-width-lg), calc(100% - var(--page-padding-inline) * 2));
@@ -68,6 +71,17 @@
     minmax(var(--page-grid-min-column-width), 1fr)
   );
   gap: var(--page-grid-gap);
+}
+
+.stackSeparated {
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-stack-separated-gap);
+}
+
+.stackSeparated > * + * {
+  padding-top: var(--page-stack-separated-padding-top);
+  border-top: 1px solid var(--page-stack-separated-border-color);
 }
 
 .footer {
