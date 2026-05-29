@@ -5,7 +5,7 @@ import { ContentPreviewCard } from './content-preview-card'
 
 const meta = {
   component: ContentPreviewCard,
-  title: 'Shared UI/ContentPreviewCard',
+  title: 'UI Kit/Content/ContentPreviewCard',
   parameters: {
     layout: 'padded',
   },
@@ -17,13 +17,13 @@ type Story = StoryObj<typeof meta>
 
 export const ArticlePreview: Story = {
   args: {
-    title: 'Xenomorph life cycle',
+    title: 'Typed content model overview',
     href: '#',
     description:
-      'Overview of the parasite stages, host dependency and lifecycle progression in the demo content model.',
+      'Preview card for a wiki-like article with summary copy, metadata header and tag footer.',
     header: (
       <>
-        <span>Xenomorphs</span>
+        <span>Wiki article</span>
         <time dateTime="2026-05-01">May 1, 2026</time>
       </>
     ),
@@ -31,8 +31,8 @@ export const ArticlePreview: Story = {
       <TagList
         placement="card"
         tags={[
-          { id: 'tag-alien', slug: 'alien', title: 'Alien' },
-          { id: 'tag-xenomorph', slug: 'xenomorph', title: 'Xenomorph' },
+          { id: 'tag-nextjs', slug: 'nextjs', title: 'Next.js' },
+          { id: 'tag-typescript', slug: 'typescript', title: 'TypeScript' },
         ]}
       />
     ),
@@ -41,10 +41,10 @@ export const ArticlePreview: Story = {
 
 export const NewsPreview: Story = {
   args: {
-    title: 'Platform notes',
+    title: 'Search indexing notes',
     href: '#',
     description:
-      'Short news-format content preview that demonstrates a second content type on the same shared UI.',
+      'Short news-format preview that demonstrates a second content type built on the same shared UI card.',
     header: (
       <>
         <span>News</span>
@@ -55,8 +55,33 @@ export const NewsPreview: Story = {
       <TagList
         placement="card"
         tags={[
-          { id: 'tag-platform', slug: 'platform', title: 'Platform' },
-          { id: 'tag-demo', slug: 'demo', title: 'Demo' },
+          { id: 'tag-search', slug: 'search', title: 'Search' },
+          { id: 'tag-seo', slug: 'seo', title: 'SEO' },
+        ]}
+      />
+    ),
+  },
+}
+
+export const WithTags: Story = {
+  args: {
+    title: 'UI Kit showcase update',
+    href: '#',
+    description:
+      'Example card with a denser tag footer to show how the shared preview layout handles multiple metadata labels.',
+    header: (
+      <>
+        <span>Update</span>
+        <time dateTime="2026-05-18">May 18, 2026</time>
+      </>
+    ),
+    footer: (
+      <TagList
+        placement="card"
+        tags={[
+          { id: 'tag-ui-kit', slug: 'ui-kit', title: 'UI Kit' },
+          { id: 'tag-storybook', slug: 'storybook', title: 'Storybook' },
+          { id: 'tag-vercel', slug: 'vercel', title: 'Vercel' },
         ]}
       />
     ),

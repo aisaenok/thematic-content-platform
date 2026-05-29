@@ -5,7 +5,7 @@ import { EmptyState } from './empty-state'
 
 const meta = {
   component: EmptyState,
-  title: 'Shared UI/EmptyState',
+  title: 'UI Kit/Feedback/EmptyState',
   parameters: {
     layout: 'padded',
   },
@@ -17,16 +17,19 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    title: 'No articles yet',
-    description:
-      'В текущем content source пока нет опубликованных материалов для этого сценария.',
+    title: 'No content yet',
+    description: 'Content source returned an empty collection for this route.',
   },
 }
 
 export const WithAction: Story = {
   args: {
-    title: 'Start with a search query',
-    description: 'Введите запрос, чтобы найти материалы среди wiki и news.',
-    action: <LinkButton href="#" variant="secondary">Open wiki</LinkButton>,
+    title: 'No content yet',
+    description: 'Content source returned an empty collection for this route.',
+    action: (
+      <LinkButton href="#" variant="secondary">
+        Open wiki
+      </LinkButton>
+    ),
   },
 }

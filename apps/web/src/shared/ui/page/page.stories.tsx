@@ -5,7 +5,7 @@ import { Page } from './page'
 
 const meta = {
   component: Page,
-  title: 'Shared UI/Page',
+  title: 'UI Kit/Layout/Page',
   parameters: {
     layout: 'fullscreen',
   },
@@ -16,10 +16,20 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const mockGridCardStyle = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+  gap: '12px',
   padding: '24px',
   border: '1px solid var(--color-border)',
   borderRadius: 'var(--radius-lg)',
   background: 'var(--color-surface)',
+}
+
+const mockSectionStyle = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+  gap: '16px',
+  maxWidth: '760px',
 }
 
 export const HeaderAndDefaultBody: Story = {
@@ -32,12 +42,18 @@ export const HeaderAndDefaultBody: Story = {
       />
 
       <Page.Body>
-        <div style={{ maxWidth: '720px' }}>
-          <p>
+        <div style={mockSectionStyle}>
+          <p style={{ margin: 0 }}>
             Default body variant is used when the page content manages its own
-            composition, for example a route-local form and a results block.
+            composition, for example a route-local form plus a results block or
+            a short explanatory section with CTA actions.
           </p>
-          <LinkButton href="#">Open wiki articles</LinkButton>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <LinkButton href="#">Open wiki articles</LinkButton>
+            <LinkButton href="#" variant="secondary">
+              Explore news
+            </LinkButton>
+          </div>
         </div>
       </Page.Body>
     </Page>
@@ -50,21 +66,25 @@ export const GridBody: Story = {
       <Page.Header
         eyebrow="Demo domain"
         title="Wiki articles"
-        description="Grid body variant for list pages."
+        description="Grid body variant for list pages with reusable content cards."
       />
 
       <Page.Body ariaLabel="Wiki articles" variant="grid">
         <article style={mockGridCardStyle}>
-          <h3>Facehugger</h3>
-          <p>Preview card placeholder inside a page-level grid layout.</p>
+          <h3 style={{ margin: 0 }}>Typed content model</h3>
+          <p style={{ margin: 0 }}>
+            Preview card placeholder inside a page-level grid layout.
+          </p>
         </article>
         <article style={mockGridCardStyle}>
-          <h3>Xenomorph life cycle</h3>
-          <p>Another card to demonstrate repeated content blocks.</p>
+          <h3 style={{ margin: 0 }}>Search prototype</h3>
+          <p style={{ margin: 0 }}>
+            Another card to demonstrate repeated content blocks.
+          </p>
         </article>
         <article style={mockGridCardStyle}>
-          <h3>Weyland-Yutani</h3>
-          <p>Shared grid pattern for content list pages.</p>
+          <h3 style={{ margin: 0 }}>SEO routes</h3>
+          <p style={{ margin: 0 }}>Shared grid pattern for content list pages.</p>
         </article>
       </Page.Body>
     </Page>
@@ -75,18 +95,19 @@ export const StackSeparatedBody: Story = {
   render: () => (
     <Page size="md">
       <Page.Body ariaLabel="Article content" variant="stackSeparated">
-        <section>
-          <h2>Article details</h2>
-          <p>
-            Main details block for content pages. The layout variant adds the
-            outer section rhythm.
+        <section style={mockSectionStyle}>
+          <h2 style={{ margin: 0 }}>Article details block</h2>
+          <p style={{ margin: 0 }}>
+            Main details-like section for content pages. The layout variant adds
+            the outer rhythm while the section itself stays focused on its own
+            content.
           </p>
         </section>
 
-        <section>
-          <h2>Related content</h2>
-          <p>
-            Secondary block separated by the page layout, not by its own outer
+        <section style={mockSectionStyle}>
+          <h2 style={{ margin: 0 }}>Related content block</h2>
+          <p style={{ margin: 0 }}>
+            Secondary section separated by the page layout, not by its own outer
             spacing rules.
           </p>
         </section>

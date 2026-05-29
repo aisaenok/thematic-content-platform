@@ -5,25 +5,25 @@ import { TagList } from './tag-list'
 
 const mockTags: Tag[] = [
   {
-    id: 'tag-alien',
-    slug: 'alien',
-    title: 'Alien',
+    id: 'tag-nextjs',
+    slug: 'nextjs',
+    title: 'Next.js',
   },
   {
-    id: 'tag-xenomorph',
-    slug: 'xenomorph',
-    title: 'Xenomorph',
+    id: 'tag-typescript',
+    slug: 'typescript',
+    title: 'TypeScript',
   },
   {
-    id: 'tag-facehugger',
-    slug: 'facehugger',
-    title: 'Facehugger',
+    id: 'tag-seo',
+    slug: 'seo',
+    title: 'SEO',
   },
 ]
 
 const meta = {
   component: TagList,
-  title: 'Shared UI/TagList',
+  title: 'UI Kit/Primitives/TagList',
   parameters: {
     layout: 'centered',
   },

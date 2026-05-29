@@ -4,7 +4,7 @@ import { LinkButton } from './link-button'
 
 const meta = {
   component: LinkButton,
-  title: 'Shared UI/LinkButton',
+  title: 'UI Kit/Primitives/LinkButton',
   parameters: {
     layout: 'centered',
   },
@@ -28,4 +28,21 @@ export const Secondary: Story = {
     children: 'Explore news',
     variant: 'secondary',
   },
+}
+
+export const Variants: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <LinkButton href="#">Primary action</LinkButton>
+      <LinkButton href="#" variant="secondary">
+        Secondary action
+      </LinkButton>
+    </div>
+  ),
 }
